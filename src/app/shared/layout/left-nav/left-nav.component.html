@@ -1,0 +1,25 @@
+<ng-container *ngFor="let menuItem of this.appRuntimeInfoService.masterConfig | filter: 'false':'isDeleted' | filter: 'true': 'isVisible'; let index=index">
+  <nav [class.selected]="isSelected(menuItem)" *ngIf="!menuItem.isDeleted">  
+   
+      <a mat-button [href]="menuItem.sectionLink ? menuItem.sectionLink : null" (click)="onToggelNavMenu(menuItem)" *ngIf="menuItem.formConfigSource !== 'remote-link'">
+          <mat-icon *ngIf="menuItem.cssIconClass" fontSet="fa" [fontIcon]="menuItem.cssIconClass" st></mat-icon> 
+          {{menuItem.sectionName}}
+          <mat-icon *ngIf="isSubSectionExists(menuItem)" fontSet="fa" class="side-nav-button"
+            [fontIcon]="menuItem.collapsed ? 'fa-angle-down' : 'fa-angle-up'" >
+           </mat-icon>
+        
+          </a>
+          
+   
+      <a mat-button [href]="menuItem.sectionLink ? menuItem.sectionLink : null" (click)="onToggelNavMenu(menuItem)" *ngIf="menuItem.formConfigSource === 'remote-link'" target="_blank">
+        {{menuItem.sectionName}}
+      </a>
+        
+   
+  </nav>
+  <ul *ngIf="isSubSectionExists(menuItem) && !menuItem.collapsed" [@shrinkOut]="'in'">
+      <li *ngFor="let child of menuItem.subSectionConfig | filter: 'false':'isDeleted' | filter: 'true': 'isVisible';" [class.sub-selected]="isSelected(child)">
+        <a [href]="child.sectionLink" mat-button >{{child.sectionName}}</a>
+      </li>
+  </ul>
+</ng-container>

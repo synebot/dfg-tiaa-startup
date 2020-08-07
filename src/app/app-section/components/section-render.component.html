@@ -1,0 +1,11 @@
+
+<app-form-action-bar 
+    [activeRouteSection]="this.appRuntimeInfoService.activeRouteSection"
+    (onsave)="onsave($event)"
+    (oncancel)="oncancel($event)">
+</app-form-action-bar>
+
+<dfg-dynamic-form [formConfig]='this.formConfig' [(formData)]="formData"></dfg-dynamic-form>
+<!-- <div>
+    {{appRuntimeInfoService.routeSubSection.formConfigData | json}}
+</div> -->

@@ -1,0 +1,17 @@
+<div class="toggle-aside-button">
+    <button mat-icon-button (click)="closePopup()">
+        <mat-icon fontSet="fa" class="fa-close"></mat-icon>
+    </button>
+</div>
+<div>
+  <dfg-dynamic-form
+          [formHeader]="'Control Details'"
+          [layoutMode]="'row'"
+          [formData]="this.dialogService.dialogFormData"
+          [formConfig]="this.dialogService.dialogFormConfig">
+  </dfg-dynamic-form>
+</div>
+
+<div mat-dialog-actions style="float: right;">
+    <button mat-raised-button (click)="closePopup()" cdkFocusInitial>OK</button>
+</div>

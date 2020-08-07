@@ -1,0 +1,16 @@
+
+<app-form-action-bar 
+    [activeRouteSection]="this.appRuntimeInfoService.activeRouteSection"
+    (onsave)="onSave($event)"
+    (oncancel)="onCancel($event)">
+</app-form-action-bar>
+
+<dfg-dynamic-form
+    [formHeader]="'Form Section'"
+    [formData]="this.formSection"
+    [formConfig]="this.formConfig">
+</dfg-dynamic-form>
+<!-- <mat-card align="right">
+  <button mat-raised-button (click)="onSave()">Save</button>  
+  <button mat-raised-button>Cancel</button>      
+</mat-card> -->

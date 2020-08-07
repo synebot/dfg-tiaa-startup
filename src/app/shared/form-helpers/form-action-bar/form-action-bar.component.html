@@ -1,0 +1,6 @@
+<div class="action-toolbar" [class.action-toolbar-scrollTop]="this.uiMessageService.scrollTopPosition > 125" *ngIf="this.activeRouteSection">
+  <div [ngStyle]="this.uiMessageService.scrollTopPosition > 125 ? {'padding-left.px': '15', 'margin-top.px': '7', 'margin-right.px': '7'} : {'padding-left.px': '15'}">
+      <button mat-raised-button *ngIf="this.activeRouteSection.loadConfig.actionName" (click)="cancelClick()">{{cancelActionName}}</button> &nbsp; 
+      <button mat-raised-button *ngIf="this.activeRouteSection.saveConfig.actionApiUrl" (click)="saveClick()">{{saveActionName}}</button> &nbsp; 
+  </div>
+</div>

@@ -1,0 +1,16 @@
+  <!-- Vertical tab -->
+<div *ngIf="this.tabSection && this.tabSection.subSectionConfig" [fxLayout]="this.tabSection.sectionType === 'vertical-tab-section' ? 'row' : 'column'">
+    <div class="tabPanel">
+      <ul class="nav-tabs tabNav" [class.tabNav-horizontal]="this.tabSection.sectionType !== 'vertical-tab-section'">
+        <li class="nav-item dfg-tab" *ngFor="let tab of this.tabSection.subSectionConfig">
+          <a class="nav-link" [href]="tab.sectionLink">{{tab.sectionName}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="tabContent">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+  
+
+
