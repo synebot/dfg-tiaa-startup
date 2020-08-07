@@ -1,0 +1,16 @@
+<mat-toolbar class="dfg-tool-bar" color="accent" [class.info-toolbar-scrollTop]="infoToolbarScrollTop">
+    <mat-toolbar-row class="dfg-tool-bar-row">
+        <div style="display: flex; flex:1">
+            <div style="flex:1 20%">
+                <div *ngIf="this.appRuntimeInfoService && (this.appRuntimeInfoService.routeSection || this.appRuntimeInfoService.routeSubSection)">
+                    <span>{{!this.appRuntimeInfoService.isSubSectionLoaded ? this.appRuntimeInfoService.routeSection.sectionName : this.appRuntimeInfoService.routeSection.sectionName + ' > ' + this.appRuntimeInfoService.routeSubSection.sectionName}}</span>
+                </div>
+            </div>
+            <div style="flex:1 80%; float: right;">
+                <div style="float: right; font-size: 10px;">
+                    Last Logged in <span>{{lastLoginTime}}</span>
+                </div>
+            </div>
+        </div>
+  </mat-toolbar-row>
+</mat-toolbar>

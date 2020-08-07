@@ -1,0 +1,45 @@
+<mat-card>
+  <mat-card-header>
+      <mat-card-title>
+          <h5>Form Section Dashboard</h5>
+        </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      <mat-table *ngIf="dataSource"  #table [dataSource]="dataSource">
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <a [href]="'#/form-section/formSection/' + element.id" mat-button>
+                <mat-icon class="action-icon" fontSet="fa" fontIcon="fa-edit"></mat-icon>Edit
+            </a>
+            <a href="#" (click)="deleteSection(element)" mat-button>
+                <mat-icon class="action-icon" fontSet="fa" fontIcon="fa-trash"></mat-icon>Delete
+            </a>
+            </mat-cell>
+        </ng-container>
+
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> Section Id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="sectionName">
+              <mat-header-cell *matHeaderCellDef> Section Name </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.sectionName}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="sectionDescription">
+              <mat-header-cell *matHeaderCellDef> Section Description </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.sectionDescription}} </mat-cell>
+          </ng-container>
+      </mat-table>
+    </div>
+  </mat-card-content>
+  <mat-card-actions align="start">
+      <a href="#/form-section/formSection" mat-raised-button>Add New section</a>
+   </mat-card-actions>
+</mat-card>

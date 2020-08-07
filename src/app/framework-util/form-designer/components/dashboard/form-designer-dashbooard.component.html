@@ -1,0 +1,49 @@
+<mat-card>
+  <mat-card-header>
+      <mat-card-title>
+          <h5>Designer Dashboard</h5>
+        </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      <mat-table *ngIf="dataSource"  #table [dataSource]="dataSource">
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+          <ng-container matColumnDef="Action">
+              <mat-header-cell *matHeaderCellDef> Action. </mat-header-cell>
+              <mat-cell *matCellDef="let element"> </mat-cell>
+            </ng-container>
+
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <a [href]="'#/form-designer/formDesigner/' + element.id" mat-button>
+                    <mat-icon class="action-icon" fontSet="fa" fontIcon="fa-edit"></mat-icon>Edit</a> &nbsp;&nbsp;
+                <a href="#" (click)="deleteForm(element)" mat-button>
+                    <mat-icon class="action-icon" fontSet="fa" fontIcon="fa-trash"></mat-icon>Delete
+                </a>
+            </mat-cell>
+        </ng-container>
+
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> Form Id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="formName">
+              <mat-header-cell *matHeaderCellDef> Form Name </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.formName}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="formDescription">
+              <mat-header-cell *matHeaderCellDef> Form Description </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.formDescription}} </mat-cell>
+          </ng-container>
+      </mat-table>
+    </div>
+  </mat-card-content>
+  <mat-card-actions align="start">
+      <a href="#/form-designer/formDesigner" mat-raised-button>Add New Form</a>
+   </mat-card-actions>
+</mat-card>

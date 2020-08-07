@@ -1,0 +1,29 @@
+<div class="toggle-aside-button">
+    <button mat-icon-button (click)="closePopup()">
+        <mat-icon fontSet="fa" class="fa-close"></mat-icon>
+    </button>
+</div>
+<div>
+  <dfg-dynamic-form
+          [formHeader]="'Control Details'"
+          [layoutMode]="'row'"
+          [formData]="this.dialogService.dialog2FormData"
+          [formConfig]="this.dialogService.dialog2FormConfig">
+  </dfg-dynamic-form>
+</div>
+
+<div mat-dialog-actions style="float: right;">
+    <button mat-raised-button (click)="closePopup()" cdkFocusInitial>OK</button>
+</div>
+<!-- 
+<div mat-dialog-content>
+    <dfg-dynamic-form
+      [formHeader]="'Control Details'"
+      [layoutMode]="'row'"
+      [formData]="this.asideService.asideFormData"
+      [formConfig]="this.asideService.asideFormConfig">
+  </dfg-dynamic-form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div> -->

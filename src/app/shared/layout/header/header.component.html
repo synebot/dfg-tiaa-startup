@@ -1,0 +1,48 @@
+<mat-toolbar color="primary">
+    <div fxFlex="1 1 80%" fxLayout="row">
+        <div fxFlex="2 1" fxLayout="row" style="align-items: center">
+            <button class="ham-menu-icon" mat-icon-button (click)="toggleSideNav()">
+                <!-- <mat-icon fontSet="fa" fontIcon="fa-bars fa-2x"></mat-icon> -->
+                <mat-icon fontSet="fa" class="fa-bars fa-2x"></mat-icon>
+            </button>
+            <div class="logo-wellsfargo">
+                <img src="resources/assets/tiaa_logo.svg" />
+            </div>
+            <h1 class="logo-title"></h1>
+        </div>
+        <div fxFlex="2 1" fxLayout="row" style="align-items: center" class="top-search-area">
+
+            <!-- <mat-form-field appearance="fill" class="top-search-field">
+                <mat-label>Global search for whole page, name, ID or forms</mat-label>
+                <input matInput placeholder="">
+
+            </mat-form-field> -->
+
+
+        </div>
+
+    </div>
+    <div fxFlex="1 1 20%" fxLayout="row">
+
+        <div fxFlex="3 1" fxLayout="row" class="header-info-right" style="align-items: right">
+            <div class="username-info"><span>Welcome,</span><span class="header-top-username">Henry Wells</span><br>
+                <span class="header-top-lastlogin">Last login:
+                    <span>{{lastLoginTime}}</span>
+                </span>
+            </div>
+            <div class="top-header-icons">
+                <a href="#">
+                    <mat-icon fontSet="fa" class="fa-bell fa-1x"></mat-icon>
+                </a>
+                <a href="#">
+                    <mat-icon fontSet="fa" class="fa-question-circle fa-1x"></mat-icon>
+                </a>
+                <a href="#">
+                    <mat-icon fontSet="fa" class="fa-sign-out fa-1x"></mat-icon>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+</mat-toolbar>

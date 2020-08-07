@@ -1,0 +1,7 @@
+<mat-card class="site-artical-header">
+    <mat-card-content *ngIf="this.appRuntimeInfoService.routeSection || this.appRuntimeInfoService.routeSubSection">
+       <h6>
+           {{!this.appRuntimeInfoService.isSubSectionLoaded ? this.appRuntimeInfoService.routeSection.sectionName : this.appRuntimeInfoService.routeSubSection.sectionName}} Section Summary Info
+        </h6>
+    </mat-card-content>
+</mat-card>
