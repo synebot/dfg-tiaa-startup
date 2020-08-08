@@ -36,8 +36,9 @@
             ],
             "allowedCommonJsDependencies": [
               "dragula",
-              "ontra/emitter",
-              "crossvent"
+              "contra/emitter",
+              "crossvent",
+              "uuid"
             ]
           },
           "configurations": {
