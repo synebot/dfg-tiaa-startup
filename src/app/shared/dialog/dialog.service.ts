@@ -1,6 +1,6 @@
 import { Injectable         } from '@angular/core';
 import { FormEditorControl  } from 'dfg-dynamic-form';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './dialog.component';
 import { Dialog2Component } from './dialog2.component';
 

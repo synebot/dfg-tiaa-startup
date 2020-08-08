@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef, OnDestroy} from '@angular/core';
 import { RouterOutlet                 } from '@angular/router';
 import { DomSanitizer                 } from '@angular/platform-browser';
-import { MatIconRegistry, MatDialog   } from '@angular/material';
+import { MatDialog                    } from '@angular/material/dialog';
+import { MatIconRegistry              } from '@angular/material/icon';
 import { MatSidenav                   } from '@angular/material/sidenav';
 import { MediaMatcher                 } from '@angular/cdk/layout';
 import { trigger, state, style, animate, transition } from '@angular/animations';

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild      } from '@angular/core';
 import { ViewContainerRef                         } from '@angular/core';
-import { MatDialog                                } from '@angular/material';
+import { MatDialog                                } from '@angular/material/dialog';
 
 import { AsideService           } from './aside.service';
 import { DialogService          } from '../dialog/dialog.service';

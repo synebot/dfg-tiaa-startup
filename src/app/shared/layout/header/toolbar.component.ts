@@ -14,7 +14,7 @@ export class ToolBarComponent implements OnInit {
   lastLoginTime: any;
   infoToolbarScrollTop: boolean;
 
-  constructor(@Inject(DOCUMENT) private document: any, public uiMessageService: UIMessageService, private appRuntimeInfoService: AppRuntimeInfoService) { }
+  constructor(@Inject(DOCUMENT) private document: any, public uiMessageService: UIMessageService, public appRuntimeInfoService: AppRuntimeInfoService) { }
 
   ngOnInit() {
     this.lastLoginTime = new Date().toLocaleString();

@@ -14,7 +14,7 @@ export class NotificationComponent implements OnInit, OnChanges {
 
   closeClicked: boolean;
 
-  constructor(private uiMessageService: UIMessageService, private notificationService: NotificationService) { }
+  constructor(public uiMessageService: UIMessageService, public notificationService: NotificationService) { }
 
   ngOnInit() {
     this.closeClicked = false;

@@ -4,7 +4,7 @@ import { FormDesignerService  } from '../../service/form-designer.service';
 import { AppRuntimeInfoService  } from '../../../../app-communication/service/app-runtime-info.service';
 import { AppFormBase            } from 'dfg-dynamic-form';
 import { FormDesigner           } from 'dfg-dynamic-form';
-import { MatTableDataSource     } from '@angular/material';
+import { MatTableDataSource     } from '@angular/material/table';
 
 /**
  * Developer : Onkar Kulkarni

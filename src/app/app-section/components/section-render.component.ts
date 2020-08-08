@@ -28,7 +28,7 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
 
     private dynamicFormEventSubscription: Subscription;
 
-    constructor(private route: ActivatedRoute, private router: Router, private appRuntimeInfoService: AppRuntimeInfoService,
+    constructor(private route: ActivatedRoute, private router: Router, public appRuntimeInfoService: AppRuntimeInfoService,
         private formSaveLoadService: FormSaveLoadService, private eventPipelineService: EventPipelineService,
         private dynamicFormService: DynamicFormService,
         protected changeDetectorRef: ChangeDetectorRef) { }

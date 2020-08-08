@@ -1,6 +1,6 @@
 import { NgModule, ANALYZE_FOR_ENTRY_COMPONENTS                   } from '@angular/core';
 import { CommonModule               } from '@angular/common';
-import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 import { MaterialModule         } from './material.module';
 import { DynamicFormModule      } from 'dfg-dynamic-form';
@@ -17,6 +17,7 @@ import { DialogService          } from './dialog/dialog.service';
 import { FilterPipe             } from './pipe/filter.pipe';
 import { FormActionBarComponent } from './form-helpers/form-action-bar/form-action-bar.component';
 import { NotificationComponent  } from './form-helpers/notification/notification.component';
+import { Dialog2Component } from './dialog/dialog2.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { NotificationComponent  } from './form-helpers/notification/notification
     LeftNavComponent,
     FooterComponent,
     DialogComponent,
+    Dialog2Component,
     ArticalHeaderComponent,
     AppAsideComponent,
     FilterPipe,

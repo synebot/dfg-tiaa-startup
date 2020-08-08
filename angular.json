@@ -14,8 +14,9 @@
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "tsConfig": "tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
+            "aot": true,
             "assets": [
               "src/resources/assets",
               "src/resources/assets/favicon.ico"
@@ -32,23 +33,36 @@
             "scripts": [
               "node_modules/hammerjs/hammer.min.js",
               "node_modules/jquery/dist/jquery.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "dragula",
+              "ontra/emitter",
+              "crossvent"
             ]
           },
           "configurations": {
             "production": {
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "fileReplacements": [
+              "budgets": [{
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -100,7 +114,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
+              "tsconfig.app.json",
               "src/tsconfig.spec.json"
             ],
             "exclude": [
@@ -127,46 +141,6 @@
           "options": {
             "tsConfig": [
               "e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "dfg-dynamic-form": {
-      "root": "projects/dfg-dynamic-form",
-      "sourceRoot": "projects/dfg-dynamic-form/src",
-      "projectType": "library",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/dfg-dynamic-form/tsconfig.lib.json",
-            "project": "projects/dfg-dynamic-form/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/dfg-dynamic-form/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/dfg-dynamic-form/src/test.ts",
-            "tsConfig": "projects/dfg-dynamic-form/tsconfig.spec.json",
-            "karmaConfig": "projects/dfg-dynamic-form/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/dfg-dynamic-form/tsconfig.lib.json",
-              "projects/dfg-dynamic-form/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

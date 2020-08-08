@@ -1,5 +1,5 @@
 import { Component, OnInit      } from '@angular/core';
-import { MatTableDataSource     } from '@angular/material';
+import { MatTableDataSource     } from '@angular/material/table';
 
 import { AppRuntimeInfoService  } from '../../../../app-communication/service/app-runtime-info.service';
 import { FormSaveLoadService    } from '../../../../app-communication/service/form-save-load.service';

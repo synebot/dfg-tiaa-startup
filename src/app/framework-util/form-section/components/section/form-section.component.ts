@@ -20,7 +20,7 @@ export class FormSectionComponent implements OnInit, AppFormBase {
   formSection: Section;
   formConfig: any[];
 
-  constructor(private formSaveLoadService: FormSaveLoadService, private appRuntimeInfoService: AppRuntimeInfoService,
+  constructor(private formSaveLoadService: FormSaveLoadService, public appRuntimeInfoService: AppRuntimeInfoService,
               private formSectionService: FormSectionService,
               private route: ActivatedRoute, private router: Router) { }
 
