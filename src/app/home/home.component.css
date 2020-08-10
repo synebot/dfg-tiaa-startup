@@ -1,59 +1,3 @@
-.mat-toolbar .mat-toolbar-row {
-    height: 60px;
-}
-
-.mat-toolbar .mat-toolbar-row:first-child {
-    background: #fffeff;
-}
-
-.mat-toolbar .mat-toolbar-row:last-child {
-    background: #276da1;
-}
-
-.flex-container {
-    height: 100%;
-}
-
-.logo-container {
-    text-align: center;
-}
-
-.logo-container img {
-    margin-right: 20px;
-}
-
-.header-btn {
-    height: 100%;
-    background: #eae8ea;
-    font-weight: 700;
-}
-
-.header-icons {
-    padding-top: 10px
-}
-
-.header-icons a {
-    margin-right: 10px;
-
-}
-
-.header-icons a:link,
-.header-icons a:hover {
-    color: #010001;
-}
-
-.nav-links {
-    width: 100%;
-    height: 100%;
-}
-
-.nav-links a {
-    text-align: center;
-    font-size: 14px;
-    font-weight: 700;
-    text-decoration: none;
-    color: #fff;
-}
 
 .content {
     height: 500px;
@@ -175,15 +119,4 @@
 
 .notice-content div {
     padding-bottom: 5px;
-}
-
-footer {
-    height: 100%;
-    background: #010001;
-    text-align: center;
-}
-
-.social-icons a:link,
-.social-icons a:hover {
-    color: #fdffff;
 }
