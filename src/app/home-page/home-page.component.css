@@ -82,11 +82,43 @@
 
 .investment-actions-section div {
     background-color: #fffeff;
-    width: 50px;
+    height: 200px;
+    padding: 10px 20px;
+    border-radius: 10px;
 }
 
-.action-icon {
+.investment-actions-section div ul {
+    list-style: none;
+    padding: 0;
+}
+
+.investment-actions-section div ul li:first-child {
+    color: #cdcbcd;
     margin-bottom: 10px;
+}
+
+.investment-actions-section div ul li:first-child .mat-icon {
+    font-size: 35px;
+}
+
+.investment-actions-section div ul li:nth-child(2) {
+    font-size: 19px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.investment-actions-section div ul li:last-child {
+    font-size: 12px;
+    font-weight: 200;
+}
+
+.help-section {
+    margin-top: 20px;
+}
+
+.help-section a:link {
+    text-decoration: underline;
+    
 }
 
 footer {
