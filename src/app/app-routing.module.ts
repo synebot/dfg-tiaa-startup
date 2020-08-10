@@ -9,21 +9,20 @@ import { AppSectionResolver     } from './app-communication/resolver/app-section
 const routes: Routes = [
     {
         path: '',
-        redirectTo: '/app-section',
         pathMatch: 'full',
+        redirectTo: '/app-section',
         resolve: {
-            sections : AppSectionResolver
-        }
+            sections : AppSectionResolver,
+        },
 
     },
     // { path: 'path', component: FeatureComponent },
     // { path: '**', component: PageNotFoundComponent },
 ];
 
-
 @NgModule({
-    imports: [RouterModule.forRoot(routes, {useHash: true})],
     exports: [RouterModule],
-    providers: [AppSectionResolver]
+    imports: [RouterModule.forRoot(routes, {useHash: true})],
+    providers: [AppSectionResolver],
 })
 export class AppRoutingModule {}

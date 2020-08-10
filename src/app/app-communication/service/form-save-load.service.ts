@@ -1,14 +1,14 @@
-import { Injectable, OnInit     } from '@angular/core';
 import { HttpClient, HttpParams             } from '@angular/common/http';
+import { Injectable, OnInit     } from '@angular/core';
 import { Router                 } from '@angular/router';
 
-import { AppRuntimeInfoService  } from './app-runtime-info.service';
-import { FormRow, FormDesigner  } from 'dfg-dynamic-form';
-import { Observable             } from 'rxjs';
-import { NotificationService, NOTIFICATION_TYPE } from '../../shared/form-helpers/notification/notification.service';
+import { FormDesigner, FormRow  } from 'dfg-dynamic-form';
 import { DynamicFormEvent     } from 'dfg-dynamic-form';
 import { ACTION_TYPE          } from 'dfg-dynamic-form';
+import { Observable             } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { NOTIFICATION_TYPE, NotificationService } from '../../shared/form-helpers/notification/notification.service';
+import { AppRuntimeInfoService  } from './app-runtime-info.service';
 
 /**
  * Developer : Onkar Kulkarni
@@ -23,8 +23,7 @@ export class FormSaveLoadService {
   private formLoadKeyValue: any;
 
   constructor(private httpClient: HttpClient, private router: Router, private appRuntimeInfoService: AppRuntimeInfoService,
-    private notificationService: NotificationService) { }
-
+              private notificationService: NotificationService) { }
 
   public getLoadApiUrl(): string {
     if (this.appRuntimeInfoService.isSubSectionLoaded !== void 0 && this.appRuntimeInfoService.isSubSectionLoaded) {
@@ -50,16 +49,16 @@ export class FormSaveLoadService {
     }
   }
 
-  loadTableData() {
-    let loadApiUrl = this.getLoadApiUrl();
+  public loadTableData() {
+    const loadApiUrl = this.getLoadApiUrl();
 
     if (loadApiUrl) {
       return this.httpClient.get(loadApiUrl);
     }
   }
 
-  loadFormData(id: any) {
-    let loadApiUrl = this.getLoadApiUrl();
+  public loadFormData(id: any) {
+    const loadApiUrl = this.getLoadApiUrl();
 
     if (loadApiUrl) {
       if (id) {
@@ -71,9 +70,9 @@ export class FormSaveLoadService {
     }
   }
 
-  saveCurrentRouteFormData(formData: any, fromDataKeyValue?: any, redirectUrl?: string) {
-    let saveApiURL = this.getSaveApiUrl();
-    let routeUrl = this.getRouteUrl();
+  public saveCurrentRouteFormData(formData: any, fromDataKeyValue?: any, redirectUrl?: string) {
+    const saveApiURL = this.getSaveApiUrl();
+    const routeUrl = this.getRouteUrl();
     let isFirstTimeSave = false;
 
     this.notificationService.sendNotification('Saving...', NOTIFICATION_TYPE.INFO);
@@ -85,10 +84,10 @@ export class FormSaveLoadService {
       if (formData) {
         let saveObservable: Observable<any>;
         // create New
-        if (formData['id'] === void 0 || formData['id'] === null)  {
+        if (formData.id === void 0 || formData.id === null)  {
 
           // TODO: remove this with actual key from db
-          formData['id'] = null;
+          formData.id = null;
           isFirstTimeSave = true;
           saveObservable = this.httpClient.post(saveApiURL, formData);
 
@@ -122,7 +121,7 @@ export class FormSaveLoadService {
     }
   }
 
-  handelFormEventActionConfig(event: DynamicFormEvent, sendNullValue =  true): Observable<any> {
+  public handelFormEventActionConfig(event: DynamicFormEvent, sendNullValue =  true): Observable<any> {
 
     // console.log('AppSectionRenderComponent.handelFormEventActionConfig', event);
 
@@ -130,8 +129,7 @@ export class FormSaveLoadService {
 
       if (event.eventActionConfig.actionType === ACTION_TYPE.SEARCH_ACTION) {
 
-
-          let options =  { params: event.getHttpParams(sendNullValue) };
+          const options =  { params: event.getHttpParams(sendNullValue) };
           return this.httpClient.get(event.eventActionConfig.actionApiUrl, options);
           // .pipe(
           //   tap( (response: any)  => {
