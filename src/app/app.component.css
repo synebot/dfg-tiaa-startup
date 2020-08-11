@@ -61,11 +61,27 @@ footer {
     text-align: center;
 }
 
+.social-icons {
+    margin: 5px 0;
+}
+
+.social-icons a {
+    margin-right: 15px;
+}
+
 .social-icons a:link,
 .social-icons a:hover {
     color: #fdffff;
 }
 
+.social-icons a .mat-icon {
+    font-size: 16px;
+}
+
 .drawer-container {
     height: 100%;
+}
+
+.mat-drawer {
+    width: 300px;
 }

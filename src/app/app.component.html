@@ -50,7 +50,7 @@
     <div class="wrapper">
         <main class="main">
             <mat-drawer-container class="drawer-container">
-                <mat-drawer class="site-navbar-drawer" #sidenav [opened]="false" [mode]="mobileQuery.matches ? 'over' : 'side'">
+                <mat-drawer class="site-navbar-drawer" #sidenav [opened]="false" [mode]="'over'">
                     <nav class="site-navbar" fxFlex="1 6">
                         <app-left-nav></app-left-nav>
                     </nav>
@@ -61,7 +61,8 @@
                             <div fxFlexAlign="stretch" class="artical-body">
                                 <div [fxLayout]="this.uiMessageService.isOnMobileDevice ? 'column' : 'row'" fxFill>
                                     <div [fxFlex]="this.uiMessageService.expandedAsideCard ? '4 1 80%' : '4 1 100%' ">
-                                        <div class="toggle-aside-button" *ngIf="this.uiMessageService.showToggleAsideButton">
+                                        <div class="toggle-aside-button"
+                                            *ngIf="this.uiMessageService.showToggleAsideButton">
                                             <button mat-icon-button (click)="onToggleAside()">
                                                 <mat-icon fontSet="fa"
                                                     [fontIcon]="this.uiMessageService.expandedAsideCard ? 'fa-angle-right':'fa-angle-left'">

@@ -500,3 +500,39 @@ article {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
   filter: alpha(opacity=20);
 }
+
+/* TIAA screens */
+
+.content-info {
+  font-size: 11px;
+}
+
+.change-links {
+  display: block;
+  text-decoration: none;
+  border: 1px solid transparent;
+  padding: 5px;
+  color: #000;
+}
+
+.change-links:hover {
+  border: 1px solid #000;
+  text-decoration: underline;
+  color: #000;
+}
+
+.info-links {
+  display: block;
+  text-align: left;
+  padding-top: 15px;
+}
+
+.left-space {
+  border-right: 1px solid #000;
+}
+
+.right-space {
+  border-left: 1px solid #000;
+}
+
+/* TIAA screens */
