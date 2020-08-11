@@ -1,44 +1,43 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from 'selenium-webdriver/http';
 
-
-import { AppRuntimeInfoService  } from '../../app-communication/service/app-runtime-info.service';
-import { AppConfigService       } from '../../app-communication/service/app-config.service';
+import { AppFormBase, Section } from 'dfg-dynamic-form';
+import { AppConfigService } from '../../app-communication/service/app-config.service';
+import { AppRuntimeInfoService } from '../../app-communication/service/app-runtime-info.service';
 import { UIMessageService } from '../../app-communication/service/ui-message.service';
-import { Section, AppFormBase } from 'dfg-dynamic-form';
 
 @Component({
     selector: 'app-section-template',
     templateUrl: './tab-section-template.component.html',
-    styleUrls: ['tab-section-template.component.css']
+    styleUrls: ['tab-section-template.component.css'],
 })
 export class TabSectionTemplateComponent implements OnInit, OnDestroy, AppFormBase {
-    sectionName: string;
+    public sectionName: string;
 
-    tabSection: Section;
+    public tabSection: Section;
 
     constructor(private route: ActivatedRoute, private router: Router, private appRuntimeInfoService: AppRuntimeInfoService,
-        private appConfigService: AppConfigService, private uiMessageService: UIMessageService) {
+                private appConfigService: AppConfigService, private uiMessageService: UIMessageService) {
 
-        this.uiMessageService.showToggelAsideButton = false;
+        // this.uiMessageService.showToggleAsideButton = false;
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.appFormComponentInit();
     }
 
-    appFormComponentInit() {
+    public appFormComponentInit() {
         // subscribe to the parameters observable
-        this.route.paramMap.subscribe(params => {
+        this.route.paramMap.subscribe((params) => {
             this.sectionName = params.get('sectionName');
             this.appRuntimeInfoService.setSection(this.sectionName);
             this.loadData();
         });
     }
 
-    loadData() {
+    public loadData() {
 
         if (this.appRuntimeInfoService.routeSection) {
             this.loadTabsSections(this.appRuntimeInfoService.routeSection);
@@ -47,8 +46,7 @@ export class TabSectionTemplateComponent implements OnInit, OnDestroy, AppFormBa
         }
     }
 
-
-    loadTabsSections(section: Section) {
+    public loadTabsSections(section: Section) {
 
         this.tabSection = section;
         if (section.subSectionConfigPath && section.subSectionConfigPath.length > 0) {
@@ -61,9 +59,9 @@ export class TabSectionTemplateComponent implements OnInit, OnDestroy, AppFormBa
                     }
 
                     responseTabSections.forEach((tab: Section) => {
-                        let tempTab = new Section(tab, this.tabSection.sectionLink);
+                        const tempTab = new Section(tab, this.tabSection.sectionLink);
 
-                        if (!this.tabSection.subSectionConfig.find( temp => temp.sectionLink === tempTab.sectionLink)) {
+                        if (!this.tabSection.subSectionConfig.find((temp) => temp.sectionLink === tempTab.sectionLink)) {
 
                             this.tabSection.subSectionConfig.push(tempTab);
                         }
@@ -77,13 +75,13 @@ export class TabSectionTemplateComponent implements OnInit, OnDestroy, AppFormBa
             });
         } else if (section.subSectionConfig) {
             // Navigate to first tab
-            if (this.tabSection.subSectionConfig  && this.tabSection.subSectionConfig.length > 0 ) {
+            if (this.tabSection.subSectionConfig && this.tabSection.subSectionConfig.length > 0) {
                 this.router.navigateByUrl(this.tabSection.subSectionConfig[0].sectionLink.replace('#', ''));
             }
         }
     }
 
-    ngOnDestroy() {
-        this.uiMessageService.showToggelAsideButton = true;
+    public ngOnDestroy() {
+        // this.uiMessageService.showToggleAsideButton = true;
     }
 }

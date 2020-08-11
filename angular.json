@@ -21,12 +21,12 @@
               "src/resources/assets",
               "src/resources/assets/favicon.ico"
             ],
-            "styles": [
-              "src/resources/styles/css/styles.css",
-              "src/resources/styles/css/layout.css",
+            "styles": [              
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/resources/styles/scss/theme.scss",
+              "src/resources/styles/css/styles.css",
+              "src/resources/styles/css/layout.css",
               "src/resources/styles/css/new-layout.css",
               "src/resources/styles/css/form-style.css"
             ],

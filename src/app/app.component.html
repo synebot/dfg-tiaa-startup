@@ -1,11 +1,13 @@
-<div class="mat-typography">
-    <app-notification></app-notification>
-    <header>
+<app-notification></app-notification>
+<div class="main-container">
+    <nav class="nav">
         <mat-toolbar>
             <mat-toolbar-row>
                 <div fxFlex="1 1 50%" fxLayout="row" fxLayoutAlign="center" class="flex-container">
                     <div fxFlex class="logo-container">
-                        <img src="resources/assets/tiaa_logo.svg" />
+                        <a routerLink="home">
+                            <img src="resources/assets/tiaa_logo.svg" />
+                        </a>
                         <button mat-button class="header-btn" (click)="onToggle(true)">MENU</button>
                     </div>
                 </div>
@@ -44,46 +46,46 @@
                 </div>
             </mat-toolbar-row>
         </mat-toolbar>
-    </header>
-    <mat-drawer-container>
-        <mat-drawer class="site-navbar-drawer" #sidenav [opened]="!!this.appRuntimeInfoService.masterConfig"
-            [mode]="mobileQuery.matches ? 'over' : 'side'">
-            <nav class="site-navbar" fxFlex="1 6">
-                <app-left-nav></app-left-nav>
-            </nav>
-        </mat-drawer>
-        <mat-drawer-content>
-            <article>
-                <div fxLayout="column" fxFill>
-                    <!-- <div class="artical-header">
-                        <app-artical-header></app-artical-header>
-                    </div> -->
-                    <div fxFlexAlign="stretch" class="artical-body">
-                        <div [fxLayout]="this.uiMessageService.isOnMobileDevice ? 'column' : 'row'" fxFill>
-                            <div [fxFlex]="this.uiMessageService.expandedAsideCard ? '4 1 80%' : '4 1 100%' ">
-                                <div class="toggle-aside-button" *ngIf="this.uiMessageService.showToggelAsideButton">
-                                    <button mat-icon-button (click)="onToggleAside()">
-                                        <mat-icon fontSet="fa"
-                                            [fontIcon]="this.uiMessageService.expandedAsideCard ? 'fa-angle-right':'fa-angle-left'">
-                                        </mat-icon>
-                                    </button>
-                                </div>
-                                <div>
-                                    <router-outlet></router-outlet>
+    </nav>
+    <div class="wrapper">
+        <main class="main">
+            <mat-drawer-container class="drawer-container">
+                <mat-drawer class="site-navbar-drawer" #sidenav [opened]="false" [mode]="mobileQuery.matches ? 'over' : 'side'">
+                    <nav class="site-navbar" fxFlex="1 6">
+                        <app-left-nav></app-left-nav>
+                    </nav>
+                </mat-drawer>
+                <mat-drawer-content>
+                    <article>
+                        <div class="article-container" fxLayout="column" fxFill>
+                            <div fxFlexAlign="stretch" class="artical-body">
+                                <div [fxLayout]="this.uiMessageService.isOnMobileDevice ? 'column' : 'row'" fxFill>
+                                    <div [fxFlex]="this.uiMessageService.expandedAsideCard ? '4 1 80%' : '4 1 100%' ">
+                                        <div class="toggle-aside-button" *ngIf="this.uiMessageService.showToggleAsideButton">
+                                            <button mat-icon-button (click)="onToggleAside()">
+                                                <mat-icon fontSet="fa"
+                                                    [fontIcon]="this.uiMessageService.expandedAsideCard ? 'fa-angle-right':'fa-angle-left'">
+                                                </mat-icon>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <router-outlet></router-outlet>
+                                        </div>
+                                    </div>
+                                    <aside *ngIf="this.uiMessageService.expandedAsideCard"
+                                        [fxFlex]="this.uiMessageService.expandedAsideCard ? '1 6 20%' : '1 6 0%'"
+                                        [@flyInOut]="this.uiMessageService.expandedAsideCard">
+                                        <app-aside></app-aside>
+                                    </aside>
                                 </div>
                             </div>
-                            <aside *ngIf="this.uiMessageService.expandedAsideCard"
-                                [fxFlex]="this.uiMessageService.expandedAsideCard ? '1 6 20%' : '1 6 0%'"
-                                [@flyInOut]="this.uiMessageService.expandedAsideCard">
-                                <app-aside></app-aside>
-                            </aside>
                         </div>
-                    </div>
-                </div>
-            </article>
-        </mat-drawer-content>
-    </mat-drawer-container>
-    <footer>
+                    </article>
+                </mat-drawer-content>
+            </mat-drawer-container>
+        </main>
+    </div>
+    <footer class="footer">
         <div fxLayout="row" fxLayoutAlign="center">
             <div fxFlex class="social-icons">
                 <a routerLink="./">

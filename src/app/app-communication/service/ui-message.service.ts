@@ -3,17 +3,17 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UIMessageService {
 
-    scrollTopPosition: number;
-    toolbarScrollTop: boolean;
-    expandedLeftSideNav: boolean;
-    expandedAsideCard: boolean;
-    isOnMobileDevice: boolean;
-    showToggelAsideButton: boolean;
+    public scrollTopPosition: number;
+    public toolbarScrollTop: boolean;
+    public expandedLeftSideNav: boolean;
+    public expandedAsideCard: boolean;
+    public isOnMobileDevice: boolean;
+    public showToggleAsideButton: boolean;
 
     constructor() {
         this.expandedLeftSideNav = true;
         this.expandedAsideCard = false;
-        this.showToggelAsideButton = true;
+        this.showToggleAsideButton = false;
         this.toolbarScrollTop = false;
         this.isOnMobileDevice = false;
     }
