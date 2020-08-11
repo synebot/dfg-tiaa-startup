@@ -1,47 +1,108 @@
-<body class="site mat-typography" >
+<div class="mat-typography">
     <app-notification></app-notification>
     <header>
-        <app-header (toggle)="onToggle($event)" ></app-header>
+        <mat-toolbar>
+            <mat-toolbar-row>
+                <div fxFlex="1 1 50%" fxLayout="row" fxLayoutAlign="center" class="flex-container">
+                    <div fxFlex class="logo-container">
+                        <img src="resources/assets/tiaa_logo.svg" />
+                        <button mat-button class="header-btn" (click)="onToggle(true)">MENU</button>
+                    </div>
+                </div>
+                <div fxFlex="1 1 50%" fxLayout="row" fxLayoutAlign="center" class="flex-container">
+                    <div class="header-icons">
+                        <a routerLink="./">
+                            <mat-icon fontSet="fa" class="fa-search"></mat-icon>
+                        </a>
+                        <a routerLink="./">
+                            <mat-icon fontSet="fa" class="fa-users"></mat-icon>
+                        </a>
+                        <a routerLink="./">
+                            <mat-icon fontSet="fa" class="fa-cog"></mat-icon>
+                        </a>
+                    </div>
+                    <button mat-button class="header-btn">LOG OUT</button>
+                </div>
+            </mat-toolbar-row>
+            <mat-toolbar-row>
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px" class="nav-links">
+                    <div>
+                        <a routerLink="./">Account summary</a>
+                    </div>
+                    <div>
+                        <a routerLink="./">Goals</a>
+                    </div>
+                    <div>
+                        <a routerLink="./">Actions</a>
+                    </div>
+                    <div>
+                        <a routerLink="./">Resources</a>
+                    </div>
+                    <div>
+                        <a routerLink="./">Products</a>
+                    </div>
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
     </header>
-    <!-- <div class="toolbar">
-        <app-toolbar></app-toolbar>
-    </div> -->
-    <mat-drawer-container class="site-content">
-        <mat-drawer class="site-navbar-drawer" #sidenav [opened]="!!this.appRuntimeInfoService.masterConfig" [mode]="mobileQuery.matches ? 'over' : 'side'">
+    <mat-drawer-container>
+        <mat-drawer class="site-navbar-drawer" #sidenav [opened]="!!this.appRuntimeInfoService.masterConfig"
+            [mode]="mobileQuery.matches ? 'over' : 'side'">
             <nav class="site-navbar" fxFlex="1 6">
                 <app-left-nav></app-left-nav>
             </nav>
         </mat-drawer>
         <mat-drawer-content>
-            <article> 
-                <div fxLayout="column" fxFill>               
-                    <div class="artical-header" >
+            <article>
+                <div fxLayout="column" fxFill>
+                    <!-- <div class="artical-header">
                         <app-artical-header></app-artical-header>
-                    </div>
+                    </div> -->
                     <div fxFlexAlign="stretch" class="artical-body">
                         <div [fxLayout]="this.uiMessageService.isOnMobileDevice ? 'column' : 'row'" fxFill>
                             <div [fxFlex]="this.uiMessageService.expandedAsideCard ? '4 1 80%' : '4 1 100%' ">
                                 <div class="toggle-aside-button" *ngIf="this.uiMessageService.showToggelAsideButton">
                                     <button mat-icon-button (click)="onToggleAside()">
-                                        <mat-icon fontSet="fa" [fontIcon]="this.uiMessageService.expandedAsideCard ? 'fa-angle-right':'fa-angle-left'"></mat-icon>
+                                        <mat-icon fontSet="fa"
+                                            [fontIcon]="this.uiMessageService.expandedAsideCard ? 'fa-angle-right':'fa-angle-left'">
+                                        </mat-icon>
                                     </button>
                                 </div>
                                 <div>
                                     <router-outlet></router-outlet>
                                 </div>
                             </div>
-                            <aside *ngIf="this.uiMessageService.expandedAsideCard" 
-                                [fxFlex]="this.uiMessageService.expandedAsideCard ? '1 6 20%' : '1 6 0%'" 
+                            <aside *ngIf="this.uiMessageService.expandedAsideCard"
+                                [fxFlex]="this.uiMessageService.expandedAsideCard ? '1 6 20%' : '1 6 0%'"
                                 [@flyInOut]="this.uiMessageService.expandedAsideCard">
                                 <app-aside></app-aside>
                             </aside>
                         </div>
-                    </div>                
+                    </div>
                 </div>
             </article>
         </mat-drawer-content>
     </mat-drawer-container>
-    <footer class="primary-bg">
-        <app-footer></app-footer>
+    <footer>
+        <div fxLayout="row" fxLayoutAlign="center">
+            <div fxFlex class="social-icons">
+                <a routerLink="./">
+                    <mat-icon fontSet="fa" class="fa-facebook"></mat-icon>
+                </a>
+                <a routerLink="./">
+                    <mat-icon fontSet="fa" class="fa-twitter"></mat-icon>
+                </a>
+                <a routerLink="./">
+                    <mat-icon fontSet="fa" class="fa-instagram"></mat-icon>
+                </a>
+                <a routerLink="./">
+                    <mat-icon fontSet="fa" class="fa-linkedin"></mat-icon>
+                </a>
+                <a routerLink="./">
+                    <mat-icon fontSet="fa" class="fa-youtube"></mat-icon>
+                </a>
+            </div>
+            <div></div>
+        </div>
     </footer>
-</body>
+</div>

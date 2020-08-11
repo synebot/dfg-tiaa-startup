@@ -1,48 +1,45 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef, OnDestroy} from '@angular/core';
-import { RouterOutlet                 } from '@angular/router';
-import { DomSanitizer                 } from '@angular/platform-browser';
-import { MatDialog                    } from '@angular/material/dialog';
-import { MatIconRegistry              } from '@angular/material/icon';
-import { MatSidenav                   } from '@angular/material/sidenav';
-import { MediaMatcher                 } from '@angular/cdk/layout';
-import { trigger, state, style, animate, transition } from '@angular/animations';
-
-
-import { AppConfigService             } from './app-communication/service/app-config.service';
-import { UIMessageService             } from './app-communication/service/ui-message.service';
-import { NotificationService, NOTIFICATION_TYPE          } from './shared/form-helpers/notification/notification.service';
-import { Section                      } from 'dfg-dynamic-form';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatIconRegistry } from '@angular/material/icon';
+import { MatSidenav } from '@angular/material/sidenav';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Section } from 'dfg-dynamic-form';
+import { AppConfigService } from './app-communication/service/app-config.service';
 import { AppRuntimeInfoService } from './app-communication/service/app-runtime-info.service';
-
+import { UIMessageService } from './app-communication/service/ui-message.service';
+import { NotificationService } from './shared/form-helpers/notification/notification.service';
 
 /**
  * Developer : Onkar Kulkarni
  */
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
   animations: [
     trigger('flyInOut', [
-      state('true', style({transform: 'translateX(0)'})
+      state('true', style({ transform: 'translateX(0)' }),
       ),
       transition('void => *', [
-        style({transform: 'translateX(100%)'}),
-        animate(250)
+        style({ transform: 'translateX(100%)' }),
+        animate(250),
       ]),
       transition('* => void', [
-        animate(250, style({transform: 'translateX(100%)'}))
-      ])
-    ])
-  ]
+        animate(250, style({ transform: 'translateX(100%)' })),
+      ]),
+    ]),
+  ],
+  selector: 'app-root',
+  styleUrls: ['./app.component.css'],
+  templateUrl: './app.component.html',
 })
 
 export class AppComponent implements OnInit, OnDestroy {
-  @ViewChild('sidenav') sidenav: MatSidenav;
-  masterSection: Section[];
+  @ViewChild('sidenav') public sidenav: MatSidenav;
+  public masterSection: Section[];
 
   private _mobileQueryListener: () => void;
-  mobileQuery: MediaQueryList;
+  public mobileQuery: MediaQueryList;
 
   constructor(
     public appConfigService: AppConfigService, public uiMessageService: UIMessageService,
@@ -50,16 +47,15 @@ export class AppComponent implements OnInit, OnDestroy {
     private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher,
     private notificationService: NotificationService, public appRuntimeInfoService: AppRuntimeInfoService) {
 
-  // To avoid XSS attacks, the URL needs to be trusted from inside of your application.
+    // To avoid XSS attacks, the URL needs to be trusted from inside of your application.
     const avatarsSafeUrl = sanitizer.bypassSecurityTrustResourceUrl('./icon/assets/avatars.svg');
     const coreSafeUrl = sanitizer.bypassSecurityTrustResourceUrl('./icon/assets/core-icon-set.svg');
     const thumbUpUrl = sanitizer.bypassSecurityTrustResourceUrl('./icon/assets/thumbup-icon-set.svg');
 
     iconRegistry.addSvgIconSetInNamespace('avatars', avatarsSafeUrl)
-                .addSvgIconSetInNamespace('core', coreSafeUrl)
-                .addSvgIcon('thumb-up', thumbUpUrl)
-                .registerFontClassAlias('fontawesome', 'fa');
-
+      .addSvgIconSetInNamespace('core', coreSafeUrl)
+      .addSvgIcon('thumb-up', thumbUpUrl)
+      .registerFontClassAlias('fontawesome', 'fa');
 
     // detect if mobile devide
     this.mobileQuery = media.matchMedia('(max-width: 667px)');
@@ -74,20 +70,19 @@ export class AppComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.notificationService.startNotificationQueue();
   }
 
-  onToggle(toggled: boolean) {
+  public onToggle(toggled: boolean): void {
     this.sidenav.toggle();
   }
 
-  onToggleAside() {
+  public onToggleAside(): void {
     this.uiMessageService.expandedAsideCard = !this.uiMessageService.expandedAsideCard;
   }
 
-
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 

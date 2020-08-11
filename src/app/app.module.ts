@@ -1,25 +1,24 @@
-import { BrowserModule                      } from '@angular/platform-browser';
-import { NgModule, APP_INITIALIZER          } from '@angular/core';
-import { RouterModule                       } from '@angular/router';
-import { FormsModule                        } from '@angular/forms';
-import { HttpClientModule                   } from '@angular/common/http';
-import { BrowserAnimationsModule            } from '@angular/platform-browser/animations';
-
-import { AppComponent         } from './app.component';
-import { AppSectionModule     } from './app-section/app-section.module';
-import { AppRoutingModule     } from './app-routing.module';
-import { AppConfigModule      } from './app-communication/app-communication.module';
-import { SharedModule         } from './shared/shared.module';
-import { StaticSectionModule  } from './static-section/static-section.module';
-import { MaterialModule       } from './shared/material.module';
-import { FrameWorkUtilModule  } from './framework-util/framework-util.module';
-import { DynamicFormModule    } from 'dfg-dynamic-form';
-
-import { AppInitService           } from './app-communication/service/app-init.service';
-import { httpInterceptorProviders } from './app-communication/http-interceptors';
+import { HttpClientModule } from '@angular/common/http';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { DynamicFormModule } from 'dfg-dynamic-form';
 import { DragulaModule } from 'ng2-dragula';
+import { AppConfigModule } from './app-communication/app-communication.module';
+import { httpInterceptorProviders } from './app-communication/http-interceptors';
+import { AppInitService } from './app-communication/service/app-init.service';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { FrameWorkUtilModule } from './framework-util/framework-util.module';
+import { HomePageComponent } from './home-page/home-page.component';
+import { HomeComponent } from './home/home.component';
+import { MaterialModule } from './shared/material.module';
+import { SharedModule } from './shared/shared.module';
+import { StaticSectionModule } from './static-section/static-section.module';
 
-export function initApp(appInitService: AppInitService) {
+export function initApp(appInitService: AppInitService): () => void {
   return () => appInitService.initializeApp();
 }
 
@@ -31,8 +30,16 @@ export function initApp(appInitService: AppInitService) {
  * Developer : Onkar Kulkarni
  */
 @NgModule({
+  bootstrap: [AppComponent],
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePageComponent,
+    HomeComponent,
+  ],
+  exports: [
+    DynamicFormModule,
+    SharedModule,
+    MaterialModule,
   ],
   imports: [
     FormsModule,
@@ -41,7 +48,7 @@ export function initApp(appInitService: AppInitService) {
     BrowserAnimationsModule,
     HttpClientModule,
     DragulaModule.forRoot(),
-    AppSectionModule,
+    // AppSectionModule,
     AppConfigModule,
     AppRoutingModule,
     StaticSectionModule,
@@ -51,17 +58,11 @@ export function initApp(appInitService: AppInitService) {
     MaterialModule,
 
   ],
-  exports: [
-    DynamicFormModule,
-    SharedModule,
-    MaterialModule,
-  ],
   providers: [
     httpInterceptorProviders,
     AppInitService,
     { provide: APP_INITIALIZER, useFactory: initApp, deps: [AppInitService], multi: true },
     // { provide: APP_INITIALIZER, useFactory: getApplicationSettings, deps: [AppInitService], multi: true }
   ],
-  bootstrap: [AppComponent]
 })
 export class AppModule { }
