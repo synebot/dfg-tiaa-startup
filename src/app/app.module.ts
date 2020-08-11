@@ -10,6 +10,7 @@ import { AppConfigModule } from './app-communication/app-communication.module';
 import { httpInterceptorProviders } from './app-communication/http-interceptors';
 import { AppInitService } from './app-communication/service/app-init.service';
 import { AppRoutingModule } from './app-routing.module';
+import { AppSectionModule } from './app-section/app-section.module';
 import { AppComponent } from './app.component';
 import { FrameWorkUtilModule } from './framework-util/framework-util.module';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -48,7 +49,7 @@ export function initApp(appInitService: AppInitService): () => void {
     BrowserAnimationsModule,
     HttpClientModule,
     DragulaModule.forRoot(),
-    // AppSectionModule,
+    AppSectionModule,
     AppConfigModule,
     AppRoutingModule,
     StaticSectionModule,
