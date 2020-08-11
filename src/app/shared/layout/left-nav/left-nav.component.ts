@@ -1,31 +1,28 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
-
+import { EnumSectionType, FrameworkBootstrapService, Section } from 'dfg-dynamic-form';
 import { AppConfigService } from '../../../app-communication/service/app-config.service';
+import { AppRuntimeInfoService } from '../../../app-communication/service/app-runtime-info.service';
 import { UIMessageService } from '../../../app-communication/service/ui-message.service';
 
-import { AppRuntimeInfoService } from '../../../app-communication/service/app-runtime-info.service';
-import { Section, EnumFormConfigSource, EnumSectionType } from 'dfg-dynamic-form';
-import { FrameWorkConfig, FrameworkBootstrapService } from 'dfg-dynamic-form';
-
-
 @Component({
-  selector: 'app-left-nav',
-  templateUrl: './left-nav.component.html',
   animations: [
     trigger('shrinkOut', [
       state('in', style({ height: '*' })),
       transition('* => void', [
         style({ height: '*' }),
-        animate(250, style({ height: 0 }))
-      ])
-    ])
-  ]
+        animate(250, style({ height: 0 })),
+      ]),
+    ]),
+  ],
+  selector: 'app-left-nav',
+  styleUrls: ['./left-nav.component.css'],
+  templateUrl: './left-nav.component.html',
 })
 
 export class LeftNavComponent implements OnInit {
-  menuList: Section[];
-  selected: any;
+  public menuList: Section[];
+  public selected: any;
 
   constructor(
     public appConfigService: AppConfigService, private uiMessageService: UIMessageService,
@@ -34,7 +31,7 @@ export class LeftNavComponent implements OnInit {
     // console.log('menuList', this.menuList);
   }
 
-  ngOnInit() {
+  public ngOnInit() {
 
     this.menuList = this.appRuntimeInfoService.masterConfig;
 
@@ -43,7 +40,7 @@ export class LeftNavComponent implements OnInit {
     }
   }
 
-  getMenuLink(section: Section) {
+  public getMenuLink(section: Section) {
     let sectionLink = section.sectionLink;
 
     if (section.sectionType !== EnumSectionType.FORM_SECTION) {
@@ -52,7 +49,7 @@ export class LeftNavComponent implements OnInit {
     return sectionLink;
   }
 
-  onToggelNavMenu(section: Section) {
+  public onToggelNavMenu(section: Section) {
 
     if (section) {
       section.collapsed = !section.collapsed;
@@ -61,7 +58,7 @@ export class LeftNavComponent implements OnInit {
 
   }
 
-  isSelected(section: Section) {
+  public isSelected(section: Section) {
     if (!section.subSectionConfig) {
       return '#' + this.appRuntimeInfoService.currentRouteUrl === section.sectionLink;
     } else {
@@ -69,7 +66,7 @@ export class LeftNavComponent implements OnInit {
     }
   }
 
-  isSubSectionExists(section: Section) {
+  public isSubSectionExists(section: Section) {
     if (section.sectionType === EnumSectionType.HORIZONTAL_TAB_SECTION || section.sectionType === EnumSectionType.VERTICAL_TAB_SECTION) {
       return false;
     } else if (section.subSectionConfig && section.subSectionConfig.length > 0) {

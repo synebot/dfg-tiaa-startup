@@ -1,0 +1,10 @@
+.left-nav-container nav a {
+    text-decoration: none;
+    color: #010001;
+}
+
+::ng-deep .mat-button {
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+}
