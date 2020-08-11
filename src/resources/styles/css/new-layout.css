@@ -1,11 +1,16 @@
 html,
 body{
     background-color:#E8E8E8;
-    font-family: inherit;
+    font-family: "Agenda", Helvetica, Arial, sans-serif;
     font-weight: normal;
     height: 100%;
     margin: 0;
 }
+
+.mat-typography {
+    font-family: "Agenda", Helvetica, Arial, sans-serif;
+}
+
 .artical-header,
 .artical-body{
     padding: 0;

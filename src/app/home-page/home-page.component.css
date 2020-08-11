@@ -1,0 +1,189 @@
+.mat-toolbar .mat-toolbar-row {
+    height: 60px;
+}
+
+.mat-toolbar .mat-toolbar-row:first-child {
+    background: #fffeff;
+}
+
+.mat-toolbar .mat-toolbar-row:last-child {
+    background: #276da1;
+}
+
+.flex-container {
+    height: 100%;
+}
+
+.logo-container {
+    text-align: center;
+}
+
+.logo-container img {
+    margin-right: 20px;
+}
+
+.header-btn {
+    height: 100%;
+    background: #eae8ea;
+    font-weight: 700;
+}
+
+.header-icons {
+    padding-top: 10px
+}
+
+.header-icons a {
+    margin-right: 10px;
+
+}
+
+.header-icons a:link,
+.header-icons a:hover {
+    color: #010001;
+}
+
+.nav-links {
+    width: 100%;
+    height: 100%;
+}
+
+.nav-links a {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #fff;
+}
+
+.content {
+    height: 500px;
+    background: #f5f4f6;
+    text-align: center;
+}
+
+.content-heading {
+    font-size: 22px;
+    margin-top: 50px;
+    font-weight: 800;
+}
+
+.explore-text {
+    border: 2px solid #000;
+    border-radius: 100px;
+    display: inline-block;
+    padding: 5px 25px;
+    font-weight: 800;
+    margin-top: 30px;
+    font-size: 14px;
+    text-transform: uppercase;
+    transform: scale(0.65);
+}
+
+.investment-actions-section {
+    margin-top: 30px;
+}
+
+.investment-actions-section a {
+    height: 225px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #010001;
+    background: #fffeff;
+}
+
+.investment-actions-section a:link,
+.investment-actions-section a:visited {
+    text-decoration: none;
+    color: #010001;
+    background: #fffeff;
+}
+
+.investment-actions-section a:hover,
+.investment-actions-section a:active {
+    text-decoration: none;
+    color: #fdfff1;
+    background: #010001;
+}
+
+.investment-actions-section a ul {
+    list-style: none;
+    padding: 0;
+}
+
+.investment-actions-section a ul li:first-child {
+    color: #cdcbcd;
+    margin-bottom: 10px;
+}
+
+.investment-actions-section a:hover ul li:first-child {
+    color: #fdfff1;
+    margin-bottom: 10px;
+}
+
+.investment-actions-section a ul li:first-child .mat-icon {
+    font-size: 35px;
+}
+
+.investment-actions-section a:hover ul li:first-child .mat-icon::before {
+    content: "\f05d"
+}
+
+.investment-actions-section a ul li:nth-child(2) {
+    font-size: 19px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.investment-actions-section a ul li:last-child {
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.help-section {
+    margin-top: 15px;
+    font-size: 10px;
+}
+
+.help-section a:link,
+.help-section a:hover {
+    color: #412641;
+}
+
+.help-section a {
+    text-decoration: underline;
+}
+
+.notice-section {
+    background: #fffeff;
+    padding: 20px;
+}
+
+.notice-section div:nth-child(2) {
+    font-size: 7px;
+}
+
+.notice-heading {
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.notice-content {
+    font-weight: 700;
+    line-height: 1;
+}
+
+.notice-content div {
+    padding-bottom: 5px;
+}
+
+footer {
+    height: 100%;
+    background: #010001;
+    text-align: center;
+}
+
+.social-icons a:link,
+.social-icons a:hover {
+    color: #fdffff;
+}

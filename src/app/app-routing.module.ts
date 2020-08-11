@@ -1,6 +1,7 @@
-import { NgModule               } from '@angular/core';
-import { RouterModule, Routes   } from '@angular/router';
-import { AppSectionResolver     } from './app-communication/resolver/app-section-resolver.service';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AppSectionResolver } from './app-communication/resolver/app-section-resolver.service';
+import { HomeComponent } from './home/home.component';
 
 /**
  * Developer : Onkar Kulkarni
@@ -8,12 +9,20 @@ import { AppSectionResolver     } from './app-communication/resolver/app-section
 
 const routes: Routes = [
     {
+        component: HomeComponent,
+        path: 'home',
+    },
+    {
+        loadChildren: () => import('./app-section/app-section.module').then((m) => m.AppSectionModule),
+        path: 'app-section',
+        resolve: {
+            sections: AppSectionResolver,
+        },
+    },
+    {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/app-section',
-        resolve: {
-            sections : AppSectionResolver,
-        },
+        redirectTo: '/home',
 
     },
     // { path: 'path', component: FeatureComponent },
@@ -22,7 +31,7 @@ const routes: Routes = [
 
 @NgModule({
     exports: [RouterModule],
-    imports: [RouterModule.forRoot(routes, {useHash: true})],
+    imports: [RouterModule.forRoot(routes, { useHash: true })],
     providers: [AppSectionResolver],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
