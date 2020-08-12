@@ -56,6 +56,12 @@
 }
 
 /*Form Layout*/
+app-section-render > dfg-dynamic-form .mat-card {
+  margin: 0 20%;
+  padding: 0 5%;
+}
+
+
 .form-container {
   margin: -1px;
   /* padding: 5px; */
