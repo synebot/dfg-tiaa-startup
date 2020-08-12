@@ -1,12 +1,13 @@
 .mat-toolbar .mat-toolbar-row {
     height: 60px;
-}
-
-.mat-toolbar .mat-toolbar-row:first-child {
     background: #fffeff;
 }
 
-.mat-toolbar .mat-toolbar-row:last-child {
+.mat-toolbar .home-toolbar.mat-toolbar-row:first-child {
+    background: #fffeff;
+}
+
+.mat-toolbar .home-toolbar.mat-toolbar-row:last-child {
     background: #276da1;
 }
 
@@ -29,17 +30,23 @@
 }
 
 .header-icons {
-    padding-top: 10px
+    padding-top: 10px;
 }
 
 .header-icons a {
     margin-right: 10px;
-
 }
 
 .header-icons a:link,
-.header-icons a:hover {
+.header-icons a:hover,
+.close-icon a:link,
+.close-icon a:hover {
     color: #010001;
+}
+
+.section-heading {
+    font-size: 14px;
+    color: rgb(128, 121, 121);
 }
 
 .nav-links {

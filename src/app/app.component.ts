@@ -5,7 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
 import { Section } from 'dfg-dynamic-form';
+import { filter } from 'rxjs/operators';
 import { AppConfigService } from './app-communication/service/app-config.service';
 import { AppRuntimeInfoService } from './app-communication/service/app-runtime-info.service';
 import { UIMessageService } from './app-communication/service/ui-message.service';
@@ -41,11 +43,14 @@ export class AppComponent implements OnInit, OnDestroy {
   private _mobileQueryListener: () => void;
   public mobileQuery: MediaQueryList;
 
+  public isAppSection: boolean;
+
   constructor(
     public appConfigService: AppConfigService, public uiMessageService: UIMessageService,
     private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private dialog: MatDialog,
     private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher,
-    private notificationService: NotificationService, public appRuntimeInfoService: AppRuntimeInfoService) {
+    private notificationService: NotificationService, public appRuntimeInfoService: AppRuntimeInfoService,
+    private router: Router) {
 
     // To avoid XSS attacks, the URL needs to be trusted from inside of your application.
     const avatarsSafeUrl = sanitizer.bypassSecurityTrustResourceUrl('./icon/assets/avatars.svg');
@@ -71,6 +76,12 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+    ).subscribe((event: NavigationEnd) => {
+      this.isAppSection = event.url.includes('app-section');
+    });
+
     this.notificationService.startNotificationQueue();
   }
 
@@ -87,4 +98,3 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
 }
-
