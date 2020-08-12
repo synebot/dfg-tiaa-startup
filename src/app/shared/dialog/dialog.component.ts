@@ -5,18 +5,18 @@ import { DialogService                 } from './dialog.service';
 
 @Component({
   selector: 'app-dialog',
-  templateUrl: 'dialog.component.html'
+  templateUrl: 'dialog.component.html',
 })
 
 export class DialogComponent implements OnDestroy {
   constructor(public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, public dialogService: DialogService) { }
+              @Inject(MAT_DIALOG_DATA) public data: any, public dialogService: DialogService) { }
 
-    closePopup() {
+    public closePopup() {
       this.dialogRef.close();
     }
 
-    ngOnDestroy() {
+    public ngOnDestroy() {
       this.dialogService.dialogFormConfig = null;
       this.dialogService.dialogFormData = null;
     }

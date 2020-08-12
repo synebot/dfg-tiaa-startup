@@ -2,43 +2,53 @@ dfg-render-repeater {
     width: 100%;
 }
 
-.dfg-row-tiaaSubContainer90pct>dfg-render-container {
+dfg-render-container {
+    width: 100%;
+}
+
+.tiaa-sub-container-90pct>dfg-render-container {
     margin: auto;
     width: 90%;
     padding: 10px;
 }
 
-.dfg-row-tiaaSubContainer70pct>dfg-render-container {
+.tiaa-sub-container-70pct>dfg-render-container {
     margin: auto;
     width: 70%;
     padding: 10px;
 }
 
-.dfg-row-tiaaSubContainer50pct>dfg-render-container {
+.tiaa-sub-container-50pct>dfg-render-container {
     margin: auto;
     width: 50%;
     padding: 10px;
 }
 
+div.tiaa-contract-container-rounded>dfg-render-container {
+    background: #f0ecf8;
+    border-radius: 5px;
+    padding: 10px;
+}
+
 .tiaa-form-heading {
-  font-weight: 700;
-  font-size: 18px;
-  padding-bottom: 15px;
+    font-weight: 700;
+    font-size: 18px;
+    padding-bottom: 15px;
 }
 
 .tiaa-form-heading-info {
-  font-size: 10px;
-  font-weight: 400;
-  padding-bottom: 12px;
-  color: #5c5c5c;
+    font-size: 10px;
+    font-weight: 400;
+    padding-bottom: 12px;
+    color: #5c5c5c;
 }
 
 .tiaa-form-line-item {
-  font-size: 12px;
-  font-weight: 600;
-  color: rgba(71, 71, 71, 0.9);
-  text-transform: uppercase;
-  padding-top: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(71, 71, 71, 0.9);
+    text-transform: uppercase;
+    padding-top: 5px;
 }
 
 .tiaa-form-sub-line-item {
@@ -56,8 +66,7 @@ dfg-render-repeater {
     color: #5c5c5c;
 }
 
-.tiaa-form-sub-line-item-checkbox.mat-checkbox-checked
-.tiaa-form-sub-line-item-checkbox .mat-checkbox-frame {
+.tiaa-form-sub-line-item-checkbox.mat-checkbox-checked .tiaa-form-sub-line-item-checkbox .mat-checkbox-frame {
     border-width: 1px;
     border-radius: 4px;
 }
@@ -72,4 +81,10 @@ dfg-render-repeater {
 
 .tiaa-secondary-btn {
     background-color: grey;
+}
+
+.tiaa-btn-rounded {
+    background: black;
+    color: white;
+    border-radius: 18px !important;
 }

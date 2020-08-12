@@ -4,15 +4,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { AppRuntimeInfoService } from '../../app-communication/service/app-runtime-info.service';
 import { FormSaveLoadService } from '../../app-communication/service/form-save-load.service';
-import { EventPipelineService, DynamicFormEvent, DynamicFormService } from 'dfg-dynamic-form';
+import { EventPipelineService, DynamicFormEvent, DynamicFormService, DYNAMIC_EVENT_TYPES } from 'dfg-dynamic-form';
 
 import { Section, EnumFormConfigSource, EnumSectionType } from 'dfg-dynamic-form';
 import { FormRow } from 'dfg-dynamic-form';
 import { ActionConfig } from 'dfg-dynamic-form';
 
-import { Subscription } from 'rxjs';
+import { Subscription, forkJoin } from 'rxjs';
 import { ApplicationForm } from 'dfg-dynamic-form';
 import { DynamicEventTypes } from 'dfg-dynamic-form';
+import { DialogService } from 'src/app/shared/dialog/dialog.service';
+import { map } from 'rxjs/operators';
+import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -28,10 +32,11 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
 
     private dynamicFormEventSubscription: Subscription;
 
-    constructor(private route: ActivatedRoute, private router: Router, public appRuntimeInfoService: AppRuntimeInfoService,
+    constructor(
+        private route: ActivatedRoute, private router: Router, public appRuntimeInfoService: AppRuntimeInfoService,
         private formSaveLoadService: FormSaveLoadService, private eventPipelineService: EventPipelineService,
-        private dynamicFormService: DynamicFormService,
-        protected changeDetectorRef: ChangeDetectorRef) { }
+        private dynamicFormService: DynamicFormService, protected changeDetectorRef: ChangeDetectorRef,
+        private dialogService: DialogService, private dialog: MatDialog) { }
 
     ngOnInit() {
         // subscribe to the parameters observable
@@ -113,12 +118,12 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
                     this.copyDataInArray(response, this.formData[this.appRuntimeInfoService.activeRouteSection.loadConfig.actionResultBindModelKey]);
                 } else {
                     this.formData = response;
-                    this.formData['paramId'] = this.formData['paramId'] ? this.formData['paramId'] : this.paramId;
+                    this.formData.paramId = this.formData.paramId ? this.formData.paramId : this.paramId;
                 }
             });
         }
         if (this.paramId) {
-            this.formData['paramId'] = this.paramId;
+            this.formData.paramId = this.paramId;
         }
 
     }
@@ -158,7 +163,45 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
                         this.router.navigateByUrl(event.eventActionConfig.actionRedirect);
                     }
                 });
+        } else if (event.eventModelFieldKey === 'investmentSelected' && event.eventType === DYNAMIC_EVENT_TYPES.CHANGE && event.eventData) {
+            this.openContractDialog(event);
         }
+    }
+
+    private openContractDialog(event: DynamicFormEvent) {
+        // TODO: design form for contract page
+        const contractListConfigApi = 'http://localhost:3000/formMaster/18';
+        // TODO: design mock data for contract page
+        const contractListDataApi = 'http://localhost:3000/accountInfo';
+
+        const fetchFormConfig$ = this.appRuntimeInfoService.loadFormConfig(contractListConfigApi).pipe(
+            map((applicationForm: ApplicationForm) => {
+                if (applicationForm && applicationForm.formConfig) {
+                    this.dialogService.dialogFormConfig = JSON.parse(applicationForm.formConfig);
+                }
+            }));
+
+        const fetchFormData$ = this.appRuntimeInfoService.loadFormConfig(contractListDataApi).pipe(
+            map((contractListDataResponse: any[]) => {
+                if (contractListDataResponse) {
+                    this.dialogService.dialogFormData = {};
+                    this.dialogService.dialogFormData.accountList = [];
+                    this.copyDataInArray(contractListDataResponse, this.dialogService.dialogFormData.accountList);
+                    // this.dialogService.dialogFormData.accountList = contractListDataResponse;
+                }
+            }));
+
+        forkJoin([fetchFormConfig$, fetchFormData$]).subscribe(response => {
+            if (response) {
+                this.openDialog();
+            }
+        });
+    }
+
+    public openDialog(): MatDialogRef<any> {
+        let dialogRef: MatDialogRef<any>;
+        dialogRef = this.dialog.open(DialogComponent);
+        return dialogRef;
     }
 
     copyDataInArray(source: any[], destination: any[]) {
@@ -180,7 +223,7 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
 
 
     ngOnDestroy() {
-        // prevent memory leak and multiple event susbriction
+        // prevent memory leak and multiple event subscription
         if (this.dynamicFormEventSubscription) {
             this.dynamicFormEventSubscription.unsubscribe();
         }
