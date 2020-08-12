@@ -1,0 +1,21 @@
+dfg-render-repeater {
+    width: 100%;
+}
+
+.dfg-row-tiaaSubContainer90pct>dfg-render-container {
+    margin: auto;
+    width: 90%;
+    padding: 10px;
+}
+
+.dfg-row-tiaaSubContainer70pct>dfg-render-container {
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+}
+
+.dfg-row-tiaaSubContainer50pct>dfg-render-container {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
