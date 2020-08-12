@@ -31,6 +31,10 @@
   padding: 25px;
 }
 
+.cdk-overlay-pane{
+  overflow: auto;
+}
+
 @media (max-width: 30rem) {
   .main {
     flex: 1 0 auto;
@@ -117,6 +121,12 @@ md-tooltip .md-content {
     padding-left: 0px;
     padding-top: 10px;
   }
+
+  app-section-render > dfg-dynamic-form .mat-card {
+    margin: 0 1%;
+    padding: 0 1%;
+  }
+  
 }
 
 /* Mobile Layout - END*/

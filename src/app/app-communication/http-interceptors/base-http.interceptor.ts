@@ -1,13 +1,13 @@
+import { HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
-import { NotificationService } from '../../shared/form-helpers/notification/notification.service';
 import { finalize, tap } from 'rxjs/operators';
+import { NotificationService } from '../../shared/form-helpers/notification/notification.service';
 
 @Injectable()
 export class BaseHttpInterceptor implements HttpInterceptor {
   constructor(private notificationService: NotificationService) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler) {
+  public intercept(req: HttpRequest<any>, next: HttpHandler) {
     const started = Date.now();
     let ok: string;
 
@@ -17,12 +17,12 @@ export class BaseHttpInterceptor implements HttpInterceptor {
       .pipe(
         tap(
           // Succeeds when there is a response; ignore other events
-          event => {
+          (event) => {
               ok = event instanceof HttpResponse ? 'succeeded' : '';
 
           },
           // Operation failed; error is an HttpErrorResponse
-          error => ok = 'failed'
+          (error) => ok = 'failed',
         ),
         // Log when response observable either completes or errors
         finalize(() => {
@@ -30,10 +30,10 @@ export class BaseHttpInterceptor implements HttpInterceptor {
           const msg = `${req.method} "${req.urlWithParams}"
              ${ok} in ${elapsed} ms.`;
 
-             this.notificationService.removeHttpBlockerRequest(`${ok}`, msg);
+          this.notificationService.removeHttpBlockerRequest(`${ok}`, msg);
 
             // console.log(msg);
-        })
+        }),
       );
   }
 }
