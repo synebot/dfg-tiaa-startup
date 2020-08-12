@@ -30,7 +30,7 @@ dfg-render-repeater {
   font-size: 10px;
   font-weight: 400;
   padding-bottom: 12px;
-  color: rgb(92, 92, 92);
+  color: #5c5c5c;
 }
 
 .tiaa-form-line-item {
@@ -38,14 +38,32 @@ dfg-render-repeater {
   font-weight: 600;
   color: rgba(71, 71, 71, 0.9);
   text-transform: uppercase;
+  padding-top: 5px;
 }
 
 .tiaa-form-sub-line-item {
-
+    margin-top: 22px !important;
+    font-weight: 100;
+    color: #838383;
 }
 
-.sub-line-item-text {
+.tiaa-form-sub-line-item-darker {
+    font-weight: 400;
+    color: #5c5c5c;
+}
 
+.tiaa-form-sub-line-item-darker:hover {
+    color: #5c5c5c;
+}
+
+.tiaa-form-sub-line-item-checkbox.mat-checkbox-checked
+.tiaa-form-sub-line-item-checkbox .mat-checkbox-frame {
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+.tiaa-form-sub-line-item-checkbox.mat-checkbox-checked .mat-checkbox-background {
+    background: #42464c;
 }
 
 .tiaa-primary-btn {
@@ -53,5 +71,5 @@ dfg-render-repeater {
 }
 
 .tiaa-secondary-btn {
-
+    background-color: grey;
 }

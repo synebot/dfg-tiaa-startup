@@ -535,4 +535,8 @@ article {
   border-left: 1px solid #000;
 }
 
+.change-from-vertical-ellipsis {
+  padding-top: 25px;
+}
+
 /* TIAA screens */
