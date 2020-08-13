@@ -66,6 +66,10 @@ div.tiaa-contract-container-rounded>dfg-render-container {
     color: #5c5c5c;
 }
 
+.tiaa-form-sub-line-item-darker.dfg-info-label {
+    margin-top: 0 !important;
+}
+
 .tiaa-form-sub-line-item-checkbox.mat-checkbox-checked .tiaa-form-sub-line-item-checkbox .mat-checkbox-frame {
     border-width: 1px;
     border-radius: 4px;
@@ -77,6 +81,10 @@ div.tiaa-contract-container-rounded>dfg-render-container {
 
 .tiaa-primary-btn {
     background-color: rgb(2, 193, 255);
+}
+
+.tiaa-primary-btn.mat-raised-button {
+    border-radius: 25px;
 }
 
 .tiaa-secondary-btn {

@@ -539,4 +539,12 @@ article {
   padding-top: 25px;
 }
 
+.dfg-control-container-contractListContinueBtn {
+  text-align: center;
+}
+
+.dialog-continue-btn {
+  justify-content: center;
+}
+
 /* TIAA screens */

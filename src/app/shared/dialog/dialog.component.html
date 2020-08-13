@@ -4,14 +4,11 @@
     </button>
 </div>
 <div>
-  <dfg-dynamic-form
-          [formHeader]="'Control Details'"
-          [layoutMode]="'row'"
-          [formData]="this.dialogService.dialogFormData"
-          [formConfig]="this.dialogService.dialogFormConfig">
-  </dfg-dynamic-form>
+    <dfg-dynamic-form [formHeader]="'Control Details'" [layoutMode]="'row'"
+        [formData]="this.dialogService.dialogFormData" [formConfig]="this.dialogService.dialogFormConfig">
+    </dfg-dynamic-form>
 </div>
 
-<div mat-dialog-actions style="float: right;">
-    <button mat-raised-button (click)="closePopup()" cdkFocusInitial>OK</button>
+<div mat-dialog-actions class="dialog-continue-btn">
+    <button mat-raised-button class="tiaa-primary-btn" (click)="closePopup()" cdkFocusInitial>Continue</button>
 </div>
