@@ -9,6 +9,7 @@ import { EnumFormConfigSource, EnumSectionType, Section } from 'dfg-dynamic-form
 import { FormRow } from 'dfg-dynamic-form';
 import { ActionConfig } from 'dfg-dynamic-form';
 
+import { Location } from '@angular/common';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ApplicationForm } from 'dfg-dynamic-form';
 import { DynamicEventTypes } from 'dfg-dynamic-form';
@@ -34,7 +35,7 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute, private router: Router, public appRuntimeInfoService: AppRuntimeInfoService,
         private formSaveLoadService: FormSaveLoadService, private eventPipelineService: EventPipelineService,
         private dynamicFormService: DynamicFormService, protected changeDetectorRef: ChangeDetectorRef,
-        private dialogService: DialogService, private dialog: MatDialog) { }
+        private dialogService: DialogService, private dialog: MatDialog, private location: Location) { }
 
     public ngOnInit() {
         // subscribe to the parameters observable
@@ -146,6 +147,8 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
 
     private handleFormEvents(event: DynamicFormEvent) {
 
+        const navButtonsList = ['changeFromContinueBtn', 'changeFromGoBackBtn', 'changeToContinueBtn', 'changeToGoBackBtn'];
+
         console.log(event, this.dynamicFormService);
 
         if (event.eventName && event.eventActionConfig) {
@@ -163,6 +166,8 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
                 });
         } else if (event.eventModelFieldKey === 'investmentSelected' && event.eventType === DYNAMIC_EVENT_TYPES.CHANGE && event.eventData) {
             this.openContractDialog(event);
+        } else if (navButtonsList.includes(event.eventModelFieldKey) && event.eventType === DYNAMIC_EVENT_TYPES.CLICK && event.eventData) {
+            this.location.back();
         }
     }
 
