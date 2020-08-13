@@ -1,14 +1,14 @@
-import { HttpClient, HttpParams             } from '@angular/common/http';
-import { Injectable, OnInit     } from '@angular/core';
-import { Router                 } from '@angular/router';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { FormDesigner, FormRow  } from 'dfg-dynamic-form';
-import { DynamicFormEvent     } from 'dfg-dynamic-form';
-import { ACTION_TYPE          } from 'dfg-dynamic-form';
-import { Observable             } from 'rxjs';
+import { FormDesigner, FormRow } from 'dfg-dynamic-form';
+import { DynamicFormEvent } from 'dfg-dynamic-form';
+import { ACTION_TYPE } from 'dfg-dynamic-form';
+import { EMPTY, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { NOTIFICATION_TYPE, NotificationService } from '../../shared/form-helpers/notification/notification.service';
-import { AppRuntimeInfoService  } from './app-runtime-info.service';
+import { AppRuntimeInfoService } from './app-runtime-info.service';
 
 /**
  * Developer : Onkar Kulkarni
@@ -22,8 +22,11 @@ export class FormSaveLoadService {
    */
   private formLoadKeyValue: any;
 
-  constructor(private httpClient: HttpClient, private router: Router, private appRuntimeInfoService: AppRuntimeInfoService,
-              private notificationService: NotificationService) { }
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+    private appRuntimeInfoService: AppRuntimeInfoService,
+    private notificationService: NotificationService) { }
 
   public getLoadApiUrl(): string {
     if (this.appRuntimeInfoService.isSubSectionLoaded !== void 0 && this.appRuntimeInfoService.isSubSectionLoaded) {
@@ -34,7 +37,7 @@ export class FormSaveLoadService {
   }
 
   public getSaveApiUrl(): string {
-    if (this.appRuntimeInfoService.isSubSectionLoaded !== void 0  &&  this.appRuntimeInfoService.isSubSectionLoaded) {
+    if (this.appRuntimeInfoService.isSubSectionLoaded !== void 0 && this.appRuntimeInfoService.isSubSectionLoaded) {
       return this.appRuntimeInfoService.routeSubSection.saveConfig.actionApiUrl;
     } else {
       return this.appRuntimeInfoService.routeSection.saveConfig.actionApiUrl;
@@ -42,7 +45,7 @@ export class FormSaveLoadService {
   }
 
   private getRouteUrl(): string {
-    if (this.appRuntimeInfoService.isSubSectionLoaded !== void 0  &&  this.appRuntimeInfoService.isSubSectionLoaded) {
+    if (this.appRuntimeInfoService.isSubSectionLoaded !== void 0 && this.appRuntimeInfoService.isSubSectionLoaded) {
       return this.appRuntimeInfoService.routeSubSection.sectionLink;
     } else {
       return this.appRuntimeInfoService.routeSection.sectionLink;
@@ -84,7 +87,7 @@ export class FormSaveLoadService {
       if (formData) {
         let saveObservable: Observable<any>;
         // create New
-        if (formData.id === void 0 || formData.id === null)  {
+        if (formData.id === void 0 || formData.id === null) {
 
           // TODO: remove this with actual key from db
           formData.id = null;
@@ -94,7 +97,7 @@ export class FormSaveLoadService {
         } else {
 
           // Update record
-          saveObservable = this.httpClient.put(saveApiURL + '/' +  fromDataKeyValue, formData);
+          saveObservable = this.httpClient.put(saveApiURL + '/' + fromDataKeyValue, formData);
 
         }
 
@@ -103,14 +106,14 @@ export class FormSaveLoadService {
 
           if (isFirstTimeSave && !this.appRuntimeInfoService.activeRouteSection.saveConfig.actionRedirect) {
             // Change route in address bar to reflect new key
-            this.router.navigate([this.appRuntimeInfoService.currentRouteUrl, {id: response.id}]);
+            this.router.navigate([this.appRuntimeInfoService.currentRouteUrl, { id: response.id }]);
 
           } else if (this.appRuntimeInfoService.activeRouteSection.saveConfig.actionRedirect) {
 
             if (!redirectUrl) {
               redirectUrl = this.appRuntimeInfoService.activeRouteSection.saveConfig.actionRedirect.replace('#', '') +
-                              formData[this.appRuntimeInfoService.activeRouteSection.saveConfig.actionRedirectParameterKey] ?
-                              '/' + formData[this.appRuntimeInfoService.activeRouteSection.saveConfig.actionRedirectParameterKey] : '';
+                formData[this.appRuntimeInfoService.activeRouteSection.saveConfig.actionRedirectParameterKey] ?
+                '/' + formData[this.appRuntimeInfoService.activeRouteSection.saveConfig.actionRedirectParameterKey] : '';
             }
             this.router.navigateByUrl(redirectUrl);
 
@@ -121,7 +124,7 @@ export class FormSaveLoadService {
     }
   }
 
-  public handelFormEventActionConfig(event: DynamicFormEvent, sendNullValue =  true): Observable<any> {
+  public handelFormEventActionConfig(event: DynamicFormEvent, sendNullValue = true): Observable<any> {
 
     // console.log('AppSectionRenderComponent.handelFormEventActionConfig', event);
 
@@ -129,21 +132,21 @@ export class FormSaveLoadService {
 
       if (event.eventActionConfig.actionType === ACTION_TYPE.SEARCH_ACTION) {
 
-          const options =  { params: event.getHttpParams(sendNullValue) };
-          return this.httpClient.get(event.eventActionConfig.actionApiUrl, options);
-          // .pipe(
-          //   tap( (response: any)  => {
-          //       console.log(response);
-          //     }
-          //   )
-          // );
-          // .subscribe((response: any) => {
-          //   event.eventFormData[event.eventActionConfig.actionResultBindModelKey] = response;
-          //   console.log(response);
-          // });
+        const options = { params: event.getHttpParams(sendNullValue) };
+        return this.httpClient.get(event.eventActionConfig.actionApiUrl, options);
+        // .pipe(
+        //   tap( (response: any)  => {
+        //       console.log(response);
+        //     }
+        //   )
+        // );
+        // .subscribe((response: any) => {
+        //   event.eventFormData[event.eventActionConfig.actionResultBindModelKey] = response;
+        //   console.log(response);
+        // });
       }
     }
-
+    return EMPTY;
   }
 
   // saveCurrentRouteFormDataObservable(formData: any, fromDataKeyValue?: any) {

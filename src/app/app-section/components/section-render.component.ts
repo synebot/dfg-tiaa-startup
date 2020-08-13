@@ -1,34 +1,32 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
+import { DYNAMIC_EVENT_TYPES, DynamicFormEvent, DynamicFormService, EventPipelineService } from 'dfg-dynamic-form';
 import { AppRuntimeInfoService } from '../../app-communication/service/app-runtime-info.service';
 import { FormSaveLoadService } from '../../app-communication/service/form-save-load.service';
-import { EventPipelineService, DynamicFormEvent, DynamicFormService, DYNAMIC_EVENT_TYPES } from 'dfg-dynamic-form';
 
-import { Section, EnumFormConfigSource, EnumSectionType } from 'dfg-dynamic-form';
+import { EnumFormConfigSource, EnumSectionType, Section } from 'dfg-dynamic-form';
 import { FormRow } from 'dfg-dynamic-form';
 import { ActionConfig } from 'dfg-dynamic-form';
 
-import { Subscription, forkJoin } from 'rxjs';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ApplicationForm } from 'dfg-dynamic-form';
 import { DynamicEventTypes } from 'dfg-dynamic-form';
-import { DialogService } from 'src/app/shared/dialog/dialog.service';
+import { forkJoin, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-
+import { DialogService } from 'src/app/shared/dialog/dialog.service';
 
 @Component({
     selector: 'app-section-render',
-    templateUrl: './section-render.component.html'
+    templateUrl: './section-render.component.html',
 })
 export class AppSectionRenderComponent implements OnInit, OnDestroy {
-    paramId: string;
-    sectionName: string;
-    subSectionName: string;
-    formConfig: Array<FormRow> = new Array<FormRow>();
-    formData: any;
+    public paramId: string;
+    public sectionName: string;
+    public subSectionName: string;
+    public formConfig: Array<FormRow> = new Array<FormRow>();
+    public formData: any;
 
     private dynamicFormEventSubscription: Subscription;
 
@@ -38,9 +36,9 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
         private dynamicFormService: DynamicFormService, protected changeDetectorRef: ChangeDetectorRef,
         private dialogService: DialogService, private dialog: MatDialog) { }
 
-    ngOnInit() {
+    public ngOnInit() {
         // subscribe to the parameters observable
-        this.route.paramMap.subscribe(params => {
+        this.route.paramMap.subscribe((params) => {
             this.sectionName = params.get('sectionName');
             this.subSectionName = params.get('subSectionName');
             this.paramId = params.get('paramId');
@@ -54,13 +52,12 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
             this.loadData();
         });
 
-
         this.dynamicFormEventSubscription = this.eventPipelineService.dynamicFormEvent$.subscribe((event: DynamicFormEvent) => {
             this.handleFormEvents(event);
         });
     }
 
-    loadData() {
+    public loadData() {
         this.formData = {};
         this.formConfig = [];
         this.dynamicFormService.listItemGroupMap = [];
@@ -73,7 +70,7 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
         }
     }
 
-    loadSectionData() {
+    public loadSectionData() {
 
         if (this.appRuntimeInfoService.routeSection
             && this.appRuntimeInfoService.routeSection.sectionType === EnumSectionType.FORM_SECTION) {
@@ -81,7 +78,7 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
         }
     }
 
-    loadSubSectionData() {
+    public loadSubSectionData() {
 
         if (this.appRuntimeInfoService.routeSubSection &&
             this.appRuntimeInfoService.routeSubSection.sectionType === EnumSectionType.FORM_SECTION) {
@@ -89,7 +86,7 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
         }
     }
 
-    loadFormConfig(section: Section) {
+    public loadFormConfig(section: Section) {
         if (section) {
             if (section.formConfigSource === EnumFormConfigSource.LOCAL) {
                 this.formConfig = section.formConfigData;
@@ -111,11 +108,12 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
         }
     }
 
-    loadFormData() {
+    public loadFormData() {
         if (this.formSaveLoadService.getLoadApiUrl()) {
             this.formSaveLoadService.loadFormData(this.paramId).subscribe((response: any) => {
                 if (this.appRuntimeInfoService.activeRouteSection.loadConfig.actionResultBindModelKey && this.paramId == null) {
-                    this.copyDataInArray(response, this.formData[this.appRuntimeInfoService.activeRouteSection.loadConfig.actionResultBindModelKey]);
+                    this.copyDataInArray(response,
+                        this.formData[this.appRuntimeInfoService.activeRouteSection.loadConfig.actionResultBindModelKey]);
                 } else {
                     this.formData = response;
                     this.formData.paramId = this.formData.paramId ? this.formData.paramId : this.paramId;
@@ -128,18 +126,18 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
 
     }
 
-    onsave(saveConfig: ActionConfig) {
+    public onsave(saveConfig: ActionConfig) {
         console.log(this.formData);
 
         this.formSaveLoadService.saveCurrentRouteFormData(this.formData);
     }
 
-    oncancel(cancelConfig: ActionConfig) {
+    public oncancel(cancelConfig: ActionConfig) {
         console.log(cancelConfig);
 
         if (cancelConfig.actionRedirect) {
 
-            let redirectUrl = cancelConfig.actionRedirect.replace('#', '') +
+            const redirectUrl = cancelConfig.actionRedirect.replace('#', '') +
                 this.formData[cancelConfig.actionRedirectParameterKey] ? '/' + this.formData[cancelConfig.actionRedirectParameterKey] : '';
 
             this.router.navigateByUrl(redirectUrl);
@@ -155,7 +153,7 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
                 .subscribe((response: any) => {
                     if (event.eventActionConfig.actionResultBindModelKey) {
                         this.copyDataInArray(response, this.formData[event.eventActionConfig.actionResultBindModelKey]);
-                        let dataRefreshEvent = new DynamicFormEvent();
+                        const dataRefreshEvent = new DynamicFormEvent();
                         dataRefreshEvent.eventType = DynamicEventTypes.DATA_REFRESH;
                         this.eventPipelineService.raseDataTableEvent(dataRefreshEvent);
                     }
@@ -191,7 +189,7 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
                 }
             }));
 
-        forkJoin([fetchFormConfig$, fetchFormData$]).subscribe(response => {
+        forkJoin([fetchFormConfig$, fetchFormData$]).subscribe((response) => {
             if (response) {
                 this.openDialog();
             }
@@ -204,25 +202,23 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
         return dialogRef;
     }
 
-    copyDataInArray(source: any[], destination: any[]) {
+    public copyDataInArray(source: any[], destination: any[]) {
 
         if (!destination) {
             destination = [];
         } else {
-            let arrayLen = destination.length;
+            const arrayLen = destination.length;
             for (let index = 0; index < arrayLen; index++) {
                 destination.pop();
             }
         }
 
-        source.forEach(element => {
+        source.forEach((element) => {
             destination.push(element);
         });
     }
 
-
-
-    ngOnDestroy() {
+    public ngOnDestroy() {
         // prevent memory leak and multiple event subscription
         if (this.dynamicFormEventSubscription) {
             this.dynamicFormEventSubscription.unsubscribe();
