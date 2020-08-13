@@ -168,7 +168,7 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
 
     private openContractDialog(event: DynamicFormEvent) {
         // TODO: design form for contract page
-        const contractListConfigApi = 'http://localhost:3000/formMaster/28';
+        const contractListConfigApi = 'http://localhost:3000/formMaster/26';
         // TODO: design mock data for contract page
         const contractListDataApi = 'http://localhost:3000/contractOptions';
 
@@ -183,7 +183,7 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
             map((contractListDataResponse: any[]) => {
                 if (contractListDataResponse) {
                     this.dialogService.dialogFormData = {};
-                    this.dialogService.dialogFormData.accountList = [];
+                    this.dialogService.dialogFormData.contractList = [];
                     this.copyDataInArray(contractListDataResponse, this.dialogService.dialogFormData.contractList);
                     // this.dialogService.dialogFormData.accountList = contractListDataResponse;
                 }
