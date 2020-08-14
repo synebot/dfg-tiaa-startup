@@ -1,6 +1,6 @@
 
 .content {
-    height: 500px;
+    height: 525px;
     background: #f5f4f6;
     text-align: center;
 }
@@ -100,7 +100,7 @@
 
 .notice-section {
     background: #fffeff;
-    padding: 20px;
+    padding: 10px;
 }
 
 .notice-section div:nth-child(2) {
