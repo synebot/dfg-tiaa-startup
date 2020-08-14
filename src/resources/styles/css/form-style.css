@@ -116,3 +116,7 @@ div.tiaa-contract-container-rounded>dfg-render-container {
     color: #000;
     border-radius: 18px !important;
 }
+
+.dfg-radio {
+    height: 20px;
+}
