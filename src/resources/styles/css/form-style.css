@@ -25,7 +25,7 @@ dfg-render-container {
 }
 
 div.tiaa-contract-container-rounded>dfg-render-container {
-    background: #f0ecf8;
+    background: #faf8fe;
     border-radius: 5px;
     padding: 10px;
 }
@@ -66,6 +66,14 @@ div.tiaa-contract-container-rounded>dfg-render-container {
     color: #5c5c5c;
 }
 
+.tiaa-form-sub-line-item-darker.dfg-info-label {
+    margin-top: 0 !important;
+}
+
+.tiaa-form-font-size-12 {
+    font-size: 12px;
+}
+
 .tiaa-form-sub-line-item-checkbox.mat-checkbox-checked .tiaa-form-sub-line-item-checkbox .mat-checkbox-frame {
     border-width: 1px;
     border-radius: 4px;
@@ -76,15 +84,35 @@ div.tiaa-contract-container-rounded>dfg-render-container {
 }
 
 .tiaa-primary-btn {
-    background-color: rgb(2, 193, 255);
+    background-color: #02c1ff;
+    font-weight: bold;
+}
+
+.tiaa-primary-btn.mat-raised-button {
+    border-radius: 25px;
+    padding: 0 30px;
 }
 
 .tiaa-secondary-btn {
     background-color: grey;
 }
 
+.tiaa-secondary-btn-white {
+    background: #fffcff;
+    border-radius: 18px !important;
+    color: #6c8e99;
+}
+
+.tiaa-justify-right {
+    justify-content: right;
+}
+
+.tiaa-justify-left {
+    justify-content: left;
+}
+
 .tiaa-btn-rounded {
-    background: black;
-    color: white;
+    background: #fffeff;
+    color: #000;
     border-radius: 18px !important;
 }
