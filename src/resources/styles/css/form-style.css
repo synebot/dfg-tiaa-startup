@@ -57,6 +57,11 @@ div.tiaa-contract-container-rounded>dfg-render-container {
     color: #838383;
 }
 
+.tiaa-form-sub-line-item:hover {
+    text-decoration: none;
+    color: #838383;
+}
+
 .tiaa-form-sub-line-item-darker {
     font-weight: 400;
     color: #5c5c5c;
