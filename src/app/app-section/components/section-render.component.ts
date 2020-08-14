@@ -150,8 +150,11 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
         const navButtonsList = ['changeFromContinueBtn', 'changeFromGoBackBtn', 'changeToContinueBtn', 'changeToGoBackBtn'];
 
         console.log(event, this.dynamicFormService);
-
-        if (event.eventName && event.eventActionConfig) {
+        if (event.eventModelFieldKey === 'investmentSelected' && event.eventType === DYNAMIC_EVENT_TYPES.CHANGE && event.eventData) {
+            this.openContractDialog(event);
+        } else if (navButtonsList.includes(event.eventModelFieldKey) && event.eventType === DYNAMIC_EVENT_TYPES.CLICK && event.eventData) {
+            this.location.back();
+        } else if (event.eventName && event.eventActionConfig) {
             this.formSaveLoadService.handelFormEventActionConfig(event, false)
                 .subscribe((response: any) => {
                     if (event.eventActionConfig.actionResultBindModelKey) {
@@ -164,10 +167,6 @@ export class AppSectionRenderComponent implements OnInit, OnDestroy {
                         this.router.navigateByUrl(event.eventActionConfig.actionRedirect);
                     }
                 });
-        } else if (event.eventModelFieldKey === 'investmentSelected' && event.eventType === DYNAMIC_EVENT_TYPES.CHANGE && event.eventData) {
-            this.openContractDialog(event);
-        } else if (navButtonsList.includes(event.eventModelFieldKey) && event.eventType === DYNAMIC_EVENT_TYPES.CLICK && event.eventData) {
-            this.location.back();
         }
     }
 
