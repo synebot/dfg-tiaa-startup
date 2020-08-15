@@ -79,14 +79,15 @@ div.tiaa-contract-container-rounded>dfg-render-container {
     font-size: 12px;
 }
 
+/*
 .tiaa-form-sub-line-item-checkbox.mat-checkbox-checked .tiaa-form-sub-line-item-checkbox .mat-checkbox-frame {
     border-width: 1px;
     border-radius: 4px;
 }
 
-.tiaa-form-sub-line-item-checkbox.mat-checkbox-checked .mat-checkbox-background {
+ .tiaa-form-sub-line-item-checkbox.mat-checkbox-checked .mat-checkbox-background {
     background: #42464c;
-}
+} */
 
 .tiaa-primary-btn {
     background-color: #02c1ff;
