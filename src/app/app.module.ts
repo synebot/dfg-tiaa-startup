@@ -13,8 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppSectionModule } from './app-section/app-section.module';
 import { AppComponent } from './app.component';
 import { FrameWorkUtilModule } from './framework-util/framework-util.module';
-import { HomePageComponent } from './home-page/home-page.component';
 import { HomeComponent } from './home/home.component';
+import { PagesModule } from './pages/pages.module';
 import { MaterialModule } from './shared/material.module';
 import { SharedModule } from './shared/shared.module';
 import { StaticSectionModule } from './static-section/static-section.module';
@@ -34,11 +34,10 @@ export function initApp(appInitService: AppInitService): () => void {
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
-    HomePageComponent,
+    // HomePageComponent,
     HomeComponent,
   ],
   exports: [
-    DynamicFormModule,
     SharedModule,
     MaterialModule,
   ],
@@ -49,7 +48,7 @@ export function initApp(appInitService: AppInitService): () => void {
     BrowserAnimationsModule,
     HttpClientModule,
     DragulaModule.forRoot(),
-    AppSectionModule,
+    // AppSectionModule,
     AppConfigModule,
     AppRoutingModule,
     StaticSectionModule,
@@ -57,6 +56,7 @@ export function initApp(appInitService: AppInitService): () => void {
     DynamicFormModule,
     SharedModule,
     MaterialModule,
+    PagesModule,
 
   ],
   providers: [
