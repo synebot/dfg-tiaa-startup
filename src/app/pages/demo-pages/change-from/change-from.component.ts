@@ -5,11 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as dfgDynamicForm from 'dfg-dynamic-form';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { DialogService } from 'src/app/shared/dialog/dialog.service';
-import { AppRuntimeInfoService } from '../../../app-communication/service/app-runtime-info.service';
-import { FormSaveLoadService } from '../../../app-communication/service/form-save-load.service';
-import { BaseSectionRenderComponent } from '../../base-shell/base-section-render.component';
+import { AppRuntimeInfoService } from 'src/app/app-communication/service/app-runtime-info.service';
+import { FormSaveLoadService } from 'src/app/app-communication/service/form-save-load.service';
+import { BaseSectionRenderComponent } from 'src/app/pages/base-shell/base-section-render.component';
 import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
+import { DialogService } from 'src/app/shared/dialog/dialog.service';
 
 @Component({
   selector: 'app-change-from',

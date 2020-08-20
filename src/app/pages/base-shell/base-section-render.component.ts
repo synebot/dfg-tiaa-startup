@@ -21,7 +21,7 @@ export abstract class BaseSectionRenderComponent implements OnDestroy {
     public formConfig: Array<FormRow> = new Array<FormRow>();
     public formData: any;
 
-    private dynamicFormEventSubscription: Subscription;
+    protected dynamicFormEventSubscription: Subscription;
 
     constructor(
         protected route: ActivatedRoute, protected router: Router, protected appRuntimeInfoService: AppRuntimeInfoService,

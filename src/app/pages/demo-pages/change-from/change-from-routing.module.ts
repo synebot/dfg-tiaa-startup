@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppSectionResolver } from '../../../app-communication/resolver/app-section-resolver.service';
-import { AppSectionComponent } from '../../dynamic-section/app-section/app-section.component';
+import { AppSectionResolver } from 'src/app/app-communication/resolver/app-section-resolver.service';
+import { AppSectionComponent } from 'src/app/pages/dynamic-section/app-section/app-section.component';
 import { ChangeFromComponent } from './change-from.component';
 
 const routes: Routes = [
