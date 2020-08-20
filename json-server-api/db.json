@@ -2780,70 +2780,70 @@
       "name": "New York University Defined Contribution Retirement plan",
       "contract": " TIAA 123456",
       "accountNumber": "87-419-9449",
-      "balance": 7052.57
+      "balance": "$7,052.57"
     },
     {
       "id": 2,
       "name": "New York University Defined Contribution Retirement plan",
       "contract": " TIAA 34566",
       "accountNumber": "06-449-1989",
-      "balance": 2495.65
+      "balance": "$2,495.65"
     },
     {
       "id": 3,
       "name": "New York University Defined Contribution Retirement plan",
       "contract": " TIAA 789434",
       "accountNumber": "11-676-3436",
-      "balance": 9433.18
+      "balance": "$9,433.18"
     },
     {
       "id": 4,
       "name": "New York University Defined Contribution Retirement plan",
       "contract": " TIAA 55656",
       "accountNumber": "48-480-3179",
-      "balance": 9733.98
+      "balance": "$9,733.98"
     },
     {
       "id": 5,
       "name": "Trueman Shobbrook",
       "accountNumber": "70-325-5182",
-      "balance": 4161.53
+      "balance": "$4,161.53"
     },
     {
       "id": 6,
       "name": "Sallee Worpole",
       "accountNumber": "33-035-3963",
-      "balance": 4614.55
+      "balance": "$4,614.55"
     },
     {
       "id": 7,
       "name": "Tilly Hesey",
       "accountNumber": "57-589-1582",
-      "balance": 3788.85
+      "balance": "$3,788.85"
     },
     {
       "id": 8,
       "name": "Teddi Ivermee",
       "accountNumber": "05-923-2154",
-      "balance": 7838.34
+      "balance": "$7,838.34"
     },
     {
       "id": 9,
       "name": "Daveta Joriot",
       "accountNumber": "19-197-1268",
-      "balance": 6416.96
+      "balance": "$6,416.96"
     },
     {
       "id": 10,
       "name": "Lulu Hissie",
       "accountNumber": "24-142-7292",
-      "balance": 2394.04
+      "balance": "$2,394.04"
     },
     {
       "id": 11,
       "name": "Madelina Glassman",
       "accountNumber": "43-141-0226",
-      "balance": 8358.91
+      "balance": "$8,358.91"
     }
   ],
   "investmentAccountInfo": [

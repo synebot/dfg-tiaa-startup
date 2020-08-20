@@ -1,43 +1,44 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CommonModule } from '@angular/common';
 
-import { AppSectionTemplateComponent    } from './components/section-template.component';
-import { AppSectionRenderComponent      } from './components/section-render.component';
 import { AppSectionResolver             } from '../app-communication/resolver/app-section-resolver.service';
-import { TabSectionTemplateComponent    } from './components/tab-section-template.component';
 import { TabSectionResolver             } from '../app-communication/resolver/tab-section-resolver.service';
+import { AppSectionRenderComponent      } from './components/section-render.component';
+import { AppSectionTemplateComponent    } from './components/section-template.component';
+import { TabSectionTemplateComponent    } from './components/tab-section-template.component';
 
 const routes: Routes = [
     {
         path: 'app-section',
+        // tslint:disable-next-line: object-literal-sort-keys
         component: AppSectionTemplateComponent,
         resolve: {
-            sections : AppSectionResolver
+            sections : AppSectionResolver,
         },
         children : [
             {
                 path: ':sectionName',
                 component: AppSectionRenderComponent,
                 resolve: {
-                    sections : AppSectionResolver
+                    sections : AppSectionResolver,
                 },
             },
             {
                 path: ':sectionName/:subSectionName',
                 component: AppSectionRenderComponent,
                 resolve: {
-                    sections : AppSectionResolver
+                    sections : AppSectionResolver,
                 },
             },
             {
                 path: ':sectionName/:subSectionName/:paramId',
                 component: AppSectionRenderComponent,
                 resolve: {
-                    sections : AppSectionResolver
+                    sections : AppSectionResolver,
                 },
             },
-        ]
+        ],
     },
     {
         path: 'tab-section/:sectionName',
@@ -47,31 +48,31 @@ const routes: Routes = [
                 path: ':sectionName',
                 component: AppSectionRenderComponent,
                 resolve: {
-                    sections : TabSectionResolver
+                    sections : TabSectionResolver,
                 },
             },
             {
                 path: ':sectionName/:subSectionName',
                 component: AppSectionRenderComponent,
                 resolve: {
-                    sections : TabSectionResolver
+                    sections : TabSectionResolver,
                 },
             },
             {
                 path: ':sectionName/:subSectionName/:paramId',
                 component: AppSectionRenderComponent,
                 resolve: {
-                    sections : TabSectionResolver
+                    sections : TabSectionResolver,
                 },
             },
-        ]
+        ],
     },
 ];
 
 @NgModule({
     imports: [CommonModule, RouterModule.forChild(routes)],
     exports: [RouterModule],
-    providers: [AppSectionResolver, TabSectionResolver]
+    providers: [AppSectionResolver, TabSectionResolver],
 })
 
 export class AppSectionRoutingModule {}
