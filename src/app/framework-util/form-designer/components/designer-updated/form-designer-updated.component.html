@@ -4,7 +4,7 @@
     (oncancel)="oncancel($event)">
 </app-form-action-bar> -->
 <div class="editor-container">
-    <as-split direction="vertical" gutterSize="20">
+    <as-split direction="vertical" gutterSize="10">
         <as-split-area [size]="75">
             <mat-card>
                 <mat-card-header>
@@ -92,22 +92,22 @@
             <mat-tab-group>
                 <mat-tab label="General">
                     <div>
-                        <dfg-dynamic-form [formHeader]="'Control Details'" [layoutMode]="'column'"
-                            [formData]="dynamicFormData" [formConfig]="dynamicFormConfig">
+                        <dfg-dynamic-form [formHeader]="'Control Details'" [layoutMode]="'row'"
+                            [formData]="dynamicFormData" [formConfig]="generalConfig">
                         </dfg-dynamic-form>
                     </div>
                 </mat-tab>
                 <mat-tab label="Form">
                     <div>
-                        <dfg-dynamic-form [formHeader]="'Control Details'" [layoutMode]="'column'"
-                            [formData]="dynamicFormData" [formConfig]="dynamicFormConfig">
+                        <dfg-dynamic-form [formHeader]="'Control Details'" [layoutMode]="'row'"
+                            [formData]="dynamicFormData" [formConfig]="formControlConfig">
                         </dfg-dynamic-form>
                     </div>
                 </mat-tab>
                 <mat-tab label="CSS">
                     <div>
-                        <dfg-dynamic-form [formHeader]="'Control Details'" [layoutMode]="'column'"
-                            [formData]="dynamicFormData" [formConfig]="dynamicFormConfig">
+                        <dfg-dynamic-form [formHeader]="'Control Details'" [layoutMode]="'row'"
+                            [formData]="dynamicFormData" [formConfig]="cssConfig">
                         </dfg-dynamic-form>
                     </div>
                 </mat-tab>

@@ -12,6 +12,7 @@ import { AppFormBase } from 'dfg-dynamic-form';
 import { FormDesignerAsideConfig } from 'dfg-dynamic-form';
 
 import { BehaviorSubject } from 'rxjs';
+import { CSS_CONFIG, FORM_CONFIG, GENERAL_CONFIG } from './../../../../app.constants';
 
 /**
  * Developer : Onkar Kulkarni
@@ -31,6 +32,9 @@ export class FormDesignerUpdatedComponent implements OnInit, OnDestroy, AppFormB
   public selectedFormControl: FormEditorControl;
   public dynamicFormConfig: any;
   public dynamicFormData: FormEditorControl;
+  public cssConfig: any = CSS_CONFIG;
+  public formControlConfig: any = FORM_CONFIG;
+  public generalConfig: any = GENERAL_CONFIG;
 
   constructor(
     private uiMessageService: UIMessageService,
@@ -47,7 +51,7 @@ export class FormDesignerUpdatedComponent implements OnInit, OnDestroy, AppFormB
     this.formDesigner = new FormDesigner();
     this.asideService.asideFormConfig = new FormDesignerAsideConfig().getStringConfig();
     this.dynamicFormConfig = new FormDesignerAsideConfig().getStringConfig();
-    console.log('asideFormConfig: ', this.asideService.asideFormConfig);
+    console.log('asideFormConfig: ', JSON.stringify(this.asideService.asideFormConfig));
     this.appFormComponentInit();
   }
 

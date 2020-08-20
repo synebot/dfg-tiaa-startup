@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'form-designer/formDesigner',
-    component: FormDesignerComponent,
+    component: FormDesignerUpdatedComponent,
     resolve: {
       sections: AppSectionResolver,
     },
