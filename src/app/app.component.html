@@ -83,7 +83,7 @@
                         <div class="article-container" fxLayout="column" fxFill>
                             <div fxFlexAlign="stretch" class="artical-body">
                                 <div [fxLayout]="this.uiMessageService.isOnMobileDevice ? 'column' : 'row'" fxFill>
-                                    <div [fxFlex]="this.uiMessageService.expandedAsideCard ? '4 1 80%' : '4 1 100%' ">
+                                    <div fxFlex="4 1 100%">
                                         <div class="toggle-aside-button"
                                             *ngIf="this.uiMessageService.showToggleAsideButton">
                                             <button mat-icon-button (click)="onToggleAside()">
@@ -96,11 +96,11 @@
                                             <router-outlet></router-outlet>
                                         </div>
                                     </div>
-                                    <aside *ngIf="this.uiMessageService.expandedAsideCard"
+                                    <!-- <aside *ngIf="this.uiMessageService.expandedAsideCard"
                                         [fxFlex]="this.uiMessageService.expandedAsideCard ? '1 6 20%' : '1 6 0%'"
                                         [@flyInOut]="this.uiMessageService.expandedAsideCard">
                                         <app-aside></app-aside>
-                                    </aside>
+                                    </aside> -->
                                 </div>
                             </div>
                         </div>
