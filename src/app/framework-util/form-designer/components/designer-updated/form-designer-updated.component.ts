@@ -35,6 +35,7 @@ export class FormDesignerUpdatedComponent implements OnInit, OnDestroy, AppFormB
   public cssConfig: any = CSS_CONFIG;
   public formControlConfig: any = FORM_CONFIG;
   public generalConfig: any = GENERAL_CONFIG;
+  public splitDirection = 'vertical';
 
   constructor(
     private uiMessageService: UIMessageService,
@@ -294,6 +295,10 @@ export class FormDesignerUpdatedComponent implements OnInit, OnDestroy, AppFormB
     console.log(JSON.stringify(formConfigTemp));
 
     this.formConfig = formConfigTemp;
+  }
+
+  public toggleControlPanel(): void {
+    this.splitDirection = (this.splitDirection === 'vertical') ? 'horizontal' : 'vertical';
   }
 
   public ngOnDestroy() {
