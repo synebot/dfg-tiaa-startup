@@ -52,7 +52,6 @@ export class FormDesignerUpdatedComponent implements OnInit, OnDestroy, AppFormB
     this.formDesigner = new FormDesigner();
     this.asideService.asideFormConfig = new FormDesignerAsideConfig().getStringConfig();
     this.dynamicFormConfig = new FormDesignerAsideConfig().getStringConfig();
-    console.log('asideFormConfig: ', JSON.stringify(this.asideService.asideFormConfig));
     this.appFormComponentInit();
   }
 
@@ -114,7 +113,6 @@ export class FormDesignerUpdatedComponent implements OnInit, OnDestroy, AppFormB
     this.selectedFormControl = formControl;
     this.asideService.asideFormData = formControl;
     this.dynamicFormData = formControl;
-    console.log('onFormItemSelect', formControl);
   }
 
   public addNewFieldToRow(formRow: FormRow, newField?: FormEditorControl) {
@@ -211,7 +209,39 @@ export class FormDesignerUpdatedComponent implements OnInit, OnDestroy, AppFormB
   }
 
   public onDrop(event: any) {
-    console.log(event);
+    const { rowIndex, columnIndex } = event.item.data;
+
+    // find and remove field to be moved
+    const fieldToMove = this.formConfig[rowIndex].fields[columnIndex];
+
+    // flatten the formConfig to a list of fields
+    // done to map internal material index to formConfig fields
+    let fields = [];
+    this.formConfig.forEach((row) => {
+      fields = [...fields, ...row.fields];
+    });
+
+    // find the destination row index using the currentIndex value of drop event
+    const destinationField = fields[event.currentIndex];
+    const destinationRowIndex = this.formConfig.findIndex((row) => row.fields.includes(destinationField));
+
+    // remove the field from current row
+    this.removeField(this.formConfig[rowIndex], fieldToMove);
+
+    // use destination row index to append field to the row
+    if (destinationRowIndex !== -1) {
+      this.addNewFieldToRow(this.formConfig[destinationRowIndex], fieldToMove);
+    }
+  }
+
+  /**
+   * Return row & column index as object properties
+   */
+  public getDragItemData(rowIndex: number, columnIndex: number): any {
+    return {
+      rowIndex,
+      columnIndex,
+    };
   }
 
   public processFormConfig() {
