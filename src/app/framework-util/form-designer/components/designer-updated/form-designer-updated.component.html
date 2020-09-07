@@ -1,0 +1,133 @@
+<!-- <app-form-action-bar 
+    [activeRouteSection]="this.appRuntimeInfoService.activeRouteSection"
+    (onsave)="onsave($event)"
+    (oncancel)="oncancel($event)">
+</app-form-action-bar> -->
+<div class="editor-container">
+    <as-split [direction]="splitDirection" gutterSize="10">
+        <as-split-area [size]="75">
+            <mat-card>
+                <mat-card-header>
+                    <!-- <mat-card-title>
+                        <h5>Form Designer</h5>
+                    </mat-card-title> -->
+                </mat-card-header>
+                <mat-card-content>
+                    <div>
+                        <div fxLayout fxLayoutGap="30px">
+                            <div fxFlex="1 1 90%">
+                                <mat-form-field>
+                                    <input matInput id="formName" placeholder="Form Name"
+                                        [(ngModel)]="formDesigner.formName">
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="1 1 10%">
+                                <button type="button" class="btn btn-sm btn-secondary" (click)="toggleControlPanel()">
+                                    Toggle&nbsp;<i class="fa"
+                                        [ngClass]="{'fa-angle-double-right': splitDirection === 'vertical', 'fa-angle-double-down': splitDirection === 'horizontal' }">
+                                    </i>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <input matInput id="formDescription" placeholder="Form Description"
+                                    [(ngModel)]="formDesigner.formDescription">
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                    <div cdkDropList (cdkDropListDropped)="onDrop($event)">
+                        <div *ngFor="let row of formConfig; let rowIndex=index" class="form-container" fxLayout
+                            fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0" fxLayout
+                            fxLayout.xs="column" style="zoom: 90%">
+                            <div fxFlex="1 1 2%">
+                                <button mat-icon-button (click)="addNewRow(rowIndex)">
+                                    <mat-icon fontSet="fa" fontIcon="fa-angle-double-up"></mat-icon>
+                                </button>
+                                <button mat-icon-button (click)="addNewFieldToRow(row)">
+                                    <mat-icon fontSet="fa" fontIcon="fa-plus"></mat-icon>
+                                </button>
+                                <button mat-icon-button (click)="removeRow(rowIndex)">
+                                    <mat-icon fontSet="fa" fontIcon="fa-trash"></mat-icon>
+                                </button>
+                            </div>
+
+                            <div *ngFor="let column of row.fields; let columnIndex=index"
+                                class="form-item form-item-editor" fxFlex
+                                [class.form-item-editor-selected]="!!column.isControlSelected"
+                                (click)="onFormItemSelect(column)" cdkDrag
+                                [cdkDragData]="getDragItemData(rowIndex, columnIndex)">
+                                <dfg-render-field [formControlConfig]="column" [layoutMode]="'designer'"
+                                    [processConfig]="'false'">
+                                </dfg-render-field>
+                                <div class="form-item-editor-toolbar">
+                                    <button mat-icon-button (click)="removeField(row, column)">
+                                        <mat-icon fontSet="fa" fontIcon="fa-trash"></mat-icon>
+                                    </button>
+                                    <button mat-icon-button (click)="moveFieldLeft(row, column, columnIndex)">
+                                        <mat-icon fontSet="fa" fontIcon="fa-angle-left"></mat-icon>
+                                    </button>
+                                    <button mat-icon-button (click)="moveFieldRight(row, column, columnIndex)">
+                                        <mat-icon fontSet="fa" fontIcon="fa-angle-right"></mat-icon>
+                                    </button>
+                                    <button mat-icon-button (click)="moveFieldUp(rowIndex, columnIndex)">
+                                        <mat-icon fontSet="fa" class="fa-angle-right fa-rotate-270"></mat-icon>
+                                    </button>
+                                    <button mat-icon-button (click)="moveFieldDown(rowIndex, columnIndex)">
+                                        <mat-icon fontSet="fa" class="fa-angle-right fa-rotate-90"></mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions align="start">
+                    <button mat-button (click)="addNewRow()">New Form Row</button>
+                    <br />
+                    <button mat-raised-button (click)="saveFormConfig()">Save Form</button>
+                    <button mat-raised-button (click)="showUpdatedConfig()">Show Updated Config</button>
+                    <button mat-raised-button (click)="loadRawConfig()">Load Raw Config</button>
+                </mat-card-actions>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        <h5>Form JSON</h5>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <textarea rows="7" matInput [(ngModel)]="updateFormConfig"></textarea>
+                </mat-card-content>
+            </mat-card>
+        </as-split-area>
+        <as-split-area [size]="25">
+            <mat-tab-group>
+                <mat-tab label="General">
+                    <div>
+                        <dfg-dynamic-form [formHeader]="'Control Details'"
+                            [layoutMode]="(splitDirection === 'horizontal') ? 'column' : 'row'"
+                            [formData]="dynamicFormData" [formConfig]="generalConfig">
+                        </dfg-dynamic-form>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Form">
+                    <div>
+                        <dfg-dynamic-form [formHeader]="'Control Details'"
+                            [layoutMode]="(splitDirection === 'horizontal') ? 'column' : 'row'"
+                            [formData]="dynamicFormData" [formConfig]="formControlConfig">
+                        </dfg-dynamic-form>
+                    </div>
+                </mat-tab>
+                <mat-tab label="CSS">
+                    <div>
+                        <dfg-dynamic-form [formHeader]="'Control Details'"
+                            [layoutMode]="(splitDirection === 'horizontal') ? 'column' : 'row'"
+                            [formData]="dynamicFormData" [formConfig]="cssConfig">
+                        </dfg-dynamic-form>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </as-split-area>
+    </as-split>
+</div>

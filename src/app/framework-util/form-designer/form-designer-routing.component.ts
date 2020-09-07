@@ -1,10 +1,11 @@
-import { NgModule             } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CommonModule         } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { FormDesignerComponent          } from './components/designer/form-designer.component';
+import { AppSectionResolver } from '../../app-communication/resolver/app-section-resolver.service';
 import { FormDesignerDashboardComponent } from './components/dashboard/form-designer-dashbooard.component';
-import { AppSectionResolver             } from '../../app-communication/resolver/app-section-resolver.service';
+import { FormDesignerUpdatedComponent } from './components/designer-updated/form-designer-updated.component';
+import { FormDesignerComponent } from './components/designer/form-designer.component';
 
 /**
  * Developer : Onkar Kulkarni
@@ -15,25 +16,28 @@ const routes: Routes = [
     path: 'form-designer/dashboard',
     component: FormDesignerDashboardComponent,
     resolve: {
-      sections : AppSectionResolver }
+      sections: AppSectionResolver,
+    },
   },
   {
     path: 'form-designer/formDesigner',
-    component: FormDesignerComponent,
+    component: FormDesignerUpdatedComponent,
     resolve: {
-      sections : AppSectionResolver }
+      sections: AppSectionResolver,
+    },
   },
   {
     path: 'form-designer/formDesigner/:id',
-    component: FormDesignerComponent,
+    component: FormDesignerUpdatedComponent,
     resolve: {
-      sections : AppSectionResolver }
+      sections: AppSectionResolver,
+    },
   },
 ];
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [AppSectionResolver]
+  providers: [AppSectionResolver],
 })
 export class FormDesignerRoutingModule { }
