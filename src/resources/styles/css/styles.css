@@ -119,6 +119,8 @@ article {
   font-weight: bold;
   border-bottom: 1px solid #cccfdb;
   color: #449be8;
+  margin-bottom: 10px;
+  line-height: 0px;
 }
 
 .form-control {
@@ -536,7 +538,7 @@ article {
 }
 
 .change-from-vertical-ellipsis {
-  padding-top: 25px;
+  padding-top: 0px !important;
 }
 
 .dfg-control-container-contractListContinueBtn {

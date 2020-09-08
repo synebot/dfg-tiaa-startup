@@ -3,7 +3,7 @@
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
-  line-height: 100%;
+  /* line-height: 100%; */
   font-size: 1.5rem;
   color: #333;
 }
@@ -76,12 +76,12 @@ app-section-render > dfg-dynamic-form .mat-card {
   width: 100%;
 }
 
-.form-container>div>.form-item {
+.form-container >.form-item {
   /* margin: 4px; */
   padding: 10px;
   /* padding-bottom: 0px !important; */
   margin-right: 0px !important;
-  border-right: 1px solid #e8e8e5;
+  /* border-right: 1px solid #e8e8e5; */
   width: 100%;
 }
 
